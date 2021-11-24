@@ -1,17 +1,81 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="core">
+      <UniqueIdentifier>{4E40957C-3A77-960D-E363-7C10CF79120F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="core\editor">
+      <UniqueIdentifier>{E46D1369-5023-8C5E-D917-863545CC8262}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="core\events">
+      <UniqueIdentifier>{92DC566A-FE91-CF5F-8786-C936F33AC663}</UniqueIdentifier>
     </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{4A63C33C-3630-1E48-5F49-0CF04B7553D6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\windows">
+      <UniqueIdentifier>{A44FC440-9048-E392-B97A-C817A5D2C29E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\IrisEngine.h" />
+    <ClInclude Include="src\core\IRlauncher.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\core.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\editor\editor_interface.h">
+      <Filter>core\editor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\entry_point.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\events\ApplicationEvent.h">
+      <Filter>core\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\events\KeyEvents.h">
+      <Filter>core\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\events\MouseEvents.h">
+      <Filter>core\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\events\event.h">
+      <Filter>core\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\layerStack.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\layers.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\log.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\irpch.h" />
+    <ClInclude Include="src\platform\windows\windows.h">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\core\IRlauncher.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\editor\editor_interface.cpp">
+      <Filter>core\editor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\layerStack.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\layers.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\log.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\irpch.cpp" />
+    <ClCompile Include="src\platform\windows\windows.cpp">
+      <Filter>platform\windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
