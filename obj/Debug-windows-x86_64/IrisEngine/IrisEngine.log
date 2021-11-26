@@ -5,6 +5,11 @@ D:\The Iris\IrisEngine\vendor\thirdparty\LOG\include\spdlog\details\registry.h(3
 D:\The Iris\IrisEngine\IrisEngine\src\core\log.h(19,41): warning C4251: 'Iris::Log::s_clientLogger': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'Iris::Log'
 D:\The Iris\IrisEngine\vendor\thirdparty\LOG\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
 cl : command line warning D9025: overriding '/MTd' with '/MDd'
+  UIbuild.cpp
+D:\The Iris\IrisEngine\dependencies\UI\backends\imgui_impl_opengl3.cpp(219,9): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\The Iris\IrisEngine\dependencies\UI\backends\imgui_impl_opengl3.cpp(246,5): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\The Iris\IrisEngine\dependencies\UI\backends\imgui_impl_opengl3.cpp(247,5): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\The Iris\IrisEngine\dependencies\UI\backends\imgui_impl_opengl3.cpp(598,5): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   IRlauncher.cpp
 D:\The Iris\IrisEngine\IrisEngine\src\core\layers.h(22,15): warning C4251: 'Iris::Layer::m_DebugName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Iris::Layer'
 D:\Microsoft Visual Studio\MS Visual Studio\VC\Tools\MSVC\14.29.30037\include\xstring(4905): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
@@ -12,7 +17,19 @@ D:\The Iris\IrisEngine\IrisEngine\src\core\layerStack.h(30,23): warning C4251: '
 D:\The Iris\IrisEngine\IrisEngine\src\core\layerStack.h(20): message : see declaration of 'std::vector<Iris::Layer *,std::allocator<Iris::Layer *>>'
 D:\The Iris\IrisEngine\IrisEngine\src\core\IRlauncher.h(22,27): warning C4251: 'Iris::Application::m_Window': class 'std::unique_ptr<Iris::Window,std::default_delete<Iris::Window>>' needs to have dll-interface to be used by clients of class 'Iris::Application'
 D:\The Iris\IrisEngine\IrisEngine\src\core\IRlauncher.h(22): message : see declaration of 'std::unique_ptr<Iris::Window,std::default_delete<Iris::Window>>'
+D:\The Iris\IrisEngine\IrisEngine\src\core\IRlauncher.cpp(8,1): warning C4005: 'IR_BIND_EVENT_FN': macro redefinition
+D:\The Iris\IrisEngine\IrisEngine\src\core\core.h(18): message : see previous definition of 'IR_BIND_EVENT_FN'
   editor_interface.cpp
+D:\The Iris\IrisEngine\IrisEngine\src\core\layers.h(22,15): warning C4251: 'Iris::Layer::m_DebugName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Iris::Layer'
+D:\Microsoft Visual Studio\MS Visual Studio\VC\Tools\MSVC\14.29.30037\include\xstring(4905): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+D:\The Iris\IrisEngine\IrisEngine\src\core\layerStack.h(30,23): warning C4251: 'Iris::LayerStack::m_Layers': class 'std::vector<Iris::Layer *,std::allocator<Iris::Layer *>>' needs to have dll-interface to be used by clients of class 'Iris::LayerStack'
+D:\The Iris\IrisEngine\IrisEngine\src\core\layerStack.h(20): message : see declaration of 'std::vector<Iris::Layer *,std::allocator<Iris::Layer *>>'
+D:\The Iris\IrisEngine\IrisEngine\src\core\IRlauncher.h(22,27): warning C4251: 'Iris::Application::m_Window': class 'std::unique_ptr<Iris::Window,std::default_delete<Iris::Window>>' needs to have dll-interface to be used by clients of class 'Iris::Application'
+D:\The Iris\IrisEngine\IrisEngine\src\core\IRlauncher.h(22): message : see declaration of 'std::unique_ptr<Iris::Window,std::default_delete<Iris::Window>>'
+D:\The Iris\IrisEngine\IrisEngine\src\core\editor\editor_interface.cpp(60,79): warning C4244: 'argument': conversion from 'uint32_t' to 'float', possible loss of data
+D:\The Iris\IrisEngine\IrisEngine\src\core\editor\editor_interface.cpp(60,51): warning C4244: 'argument': conversion from 'uint32_t' to 'float', possible loss of data
+D:\The Iris\IrisEngine\IrisEngine\src\core\editor\editor_interface.cpp(132,52): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\The Iris\IrisEngine\IrisEngine\src\core\editor\editor_interface.cpp(132,37): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
   layerStack.cpp
 D:\The Iris\IrisEngine\IrisEngine\src\core\layers.h(22,15): warning C4251: 'Iris::Layer::m_DebugName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Iris::Layer'
 D:\Microsoft Visual Studio\MS Visual Studio\VC\Tools\MSVC\14.29.30037\include\xstring(4905): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'

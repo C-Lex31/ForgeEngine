@@ -13,9 +13,11 @@ outputdir ="%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir ={}
 IncludeDir["GLFW"] = "dependencies/Libraries/GLFW/include"
 IncludeDir["GLAD"] = "dependencies/Libraries/GLAD/include"
+IncludeDir["UI"]  =  "dependencies/UI"
 
 include "dependencies/Libraries/GLFW"
 include "dependencies/Libraries/GLAD"
+include "dependencies/UI"
 
 
 project "IrisEngine"
@@ -42,7 +44,8 @@ project "IrisEngine"
 			   "%{prj.name}/src",
 			  "vendor/thirdparty/LOG/include",
 			  "%{IncludeDir.GLFW}",
-			   "%{IncludeDir.GLAD}"
+			   "%{IncludeDir.GLAD}",
+			   "%{IncludeDir.UI}"
 			  
 		 }
 
@@ -50,7 +53,10 @@ project "IrisEngine"
 		 {
 		      "GLFW",
 			  "GLAD",
+			  "ImGui",
 			  "opengl32.lib"
+
+			  
 		 }
 
 		 filter "system:windows"

@@ -77,5 +77,6 @@
     <ClCompile Include="src\platform\windows\windows.cpp">
       <Filter>platform\windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\editor\UIbuild.cpp" />
   </ItemGroup>
 </Project>
