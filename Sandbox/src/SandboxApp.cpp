@@ -28,7 +28,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new Test_Layer());   
-		PushOverlay(new Iris::UI_Layer());
+		//PushOverlay(new Iris::UI_Layer());
 	}
 	~Sandbox()
 	{

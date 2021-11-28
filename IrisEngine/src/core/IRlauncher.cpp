@@ -7,11 +7,15 @@
 namespace Iris {
 #define IR_BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
 	Application* Application::s_Instance = nullptr;
+	UI_Layer* m_guiLayer = new UI_Layer();
 	Application::Application()
 	{
 		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(IR_BIND_EVENT_FN(OnEvent));
+		//UI_Layer* m_guiLayer = new UI_Layer();
+		PushOverlay(m_guiLayer);
+	
 	}
 
 	Application::~Application()
@@ -52,7 +56,11 @@ namespace Iris {
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
-		
+			m_guiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnGUIRender();
+			m_guiLayer->End();
+			
 			m_Window->OnUpdate();
 		}
 	}
