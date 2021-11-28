@@ -41,7 +41,7 @@ namespace Iris {
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
 
-
+		virtual void* GetNativeWindow() const = 0;// It returns a void pointer as it doesnt always have to be a glfw window . In future if I decide to use any other Graphics library..it could return HWIN ..etc
 
 		static Window* Create(const WindowProps& props = WindowProps());
 	};
@@ -61,7 +61,7 @@ namespace Iris {
 		void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
-
+		inline virtual void* GetNativeWindow() const { return m_Window; }
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();

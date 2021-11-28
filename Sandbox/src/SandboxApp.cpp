@@ -10,12 +10,14 @@ public:
 
 	void OnUpdate() override
 	{
-		//IR_INFO("BaseLayer::Update");
+		IR_INFO("BaseLayer::Update");
+		if (Iris::input::isKeyPressed(IR_KEY_TAB))
+			IR_TRACE("TAB press detected");
 	}
 
 	void OnEvent(Iris::Event& event)override
 	{
-		//IR_TRACE("{0}", event);
+		//IR_INFO("{0}", event);
 	}
 
 };

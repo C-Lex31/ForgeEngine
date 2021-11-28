@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>irpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>IR_PLATFORM_WINDOWS;IR_BUILD_DLL;GLFW_INCLUDE_NONE;IR_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\vendor\thirdparty\LOG\include;..\dependencies\Libraries\GLFW\include;..\dependencies\Libraries\GLAD\include;..\dependencies\UI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\vendor\thirdparty\LOG\include;..\dependencies\Libraries\GLFW\include;..\dependencies\Libraries\GLAD\include;..\vendor\UI\main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -93,6 +93,9 @@
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Debug-windows-x86_64\IrisEngine\IrisEngine.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Debug-windows-x86_64\IrisEngine\IrisEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\IrisEngine\IrisEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\IrisEngine\IrisEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -100,7 +103,7 @@
       <PrecompiledHeaderFile>irpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>IR_PLATFORM_WINDOWS;IR_BUILD_DLL;GLFW_INCLUDE_NONE;IR_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\vendor\thirdparty\LOG\include;..\dependencies\Libraries\GLFW\include;..\dependencies\Libraries\GLAD\include;..\dependencies\UI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\vendor\thirdparty\LOG\include;..\dependencies\Libraries\GLFW\include;..\dependencies\Libraries\GLAD\include;..\vendor\UI\main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -117,6 +120,9 @@
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Release-windows-x86_64\IrisEngine\IrisEngine.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Release-windows-x86_64\IrisEngine\IrisEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\IrisEngine\IrisEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\IrisEngine\IrisEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
@@ -124,7 +130,7 @@
       <PrecompiledHeaderFile>irpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>IR_PLATFORM_WINDOWS;IR_BUILD_DLL;GLFW_INCLUDE_NONE;IR_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\vendor\thirdparty\LOG\include;..\dependencies\Libraries\GLFW\include;..\dependencies\Libraries\GLAD\include;..\dependencies\UI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\vendor\thirdparty\LOG\include;..\dependencies\Libraries\GLFW\include;..\dependencies\Libraries\GLAD\include;..\vendor\UI\main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -141,6 +147,9 @@
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Dist-windows-x86_64\IrisEngine\IrisEngine.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Dist-windows-x86_64\IrisEngine\IrisEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\IrisEngine\IrisEngine.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\IrisEngine\IrisEngine.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\IrisEngine.h" />
@@ -152,22 +161,27 @@
     <ClInclude Include="src\core\events\KeyEvents.h" />
     <ClInclude Include="src\core\events\MouseEvents.h" />
     <ClInclude Include="src\core\events\event.h" />
+    <ClInclude Include="src\core\input\input.h" />
+    <ClInclude Include="src\core\input\keycodes.h" />
+    <ClInclude Include="src\core\input\mouse_button_codes.h" />
     <ClInclude Include="src\core\layerStack.h" />
     <ClInclude Include="src\core\layers.h" />
-    <ClInclude Include="src\core\log.h" />
+    <ClInclude Include="src\core\log\log.h" />
     <ClInclude Include="src\irpch.h" />
+    <ClInclude Include="src\platform\windows\winInput.h" />
     <ClInclude Include="src\platform\windows\windows.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\core\editor\UIbuild.cpp" />
     <ClCompile Include="src\core\IRlauncher.cpp" />
+    <ClCompile Include="src\core\editor\UIbuild.cpp" />
     <ClCompile Include="src\core\editor\editor_interface.cpp" />
     <ClCompile Include="src\core\layerStack.cpp" />
     <ClCompile Include="src\core\layers.cpp" />
-    <ClCompile Include="src\core\log.cpp" />
+    <ClCompile Include="src\core\log\log.cpp" />
     <ClCompile Include="src\irpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\platform\windows\winInput.cpp" />
     <ClCompile Include="src\platform\windows\windows.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,7 +191,7 @@
     <ProjectReference Include="..\dependencies\Libraries\GLAD\GLAD.vcxproj">
       <Project>{5D4A857C-4981-860D-F26D-6C10DE83020F}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\dependencies\UI\ImGui.vcxproj">
+    <ProjectReference Include="..\vendor\UI\main\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>

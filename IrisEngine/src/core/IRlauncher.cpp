@@ -2,14 +2,14 @@
 #include "IRlauncher.h"
 #include "core/events/ApplicationEvent.h"
 #include "glad/glad.h" 
-
+#include "core/input/input.h"
 
 namespace Iris {
 #define IR_BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
-	Application* Application::s_instance = nullptr;
+	Application* Application::s_Instance = nullptr;
 	Application::Application()
 	{
-		s_instance = this;
+		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(IR_BIND_EVENT_FN(OnEvent));
 	}
@@ -31,7 +31,7 @@ namespace Iris {
 
 	void Application::OnEvent(Event& e)
 	{
-		IR_CORE_INFO("{0}", e);
+		//IR_CORE_INFO("{0}", e);
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
@@ -52,6 +52,7 @@ namespace Iris {
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
+		
 			m_Window->OnUpdate();
 		}
 	}

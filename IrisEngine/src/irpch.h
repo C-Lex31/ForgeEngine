@@ -7,7 +7,7 @@
 #include <vector>
 #include <utility>
 #include <functional>
-#include "core/log.h"
+#include "core/log/log.h"
 
 #ifdef  IR_PLATFORM_WINDOWS
 

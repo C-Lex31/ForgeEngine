@@ -14,9 +14,9 @@ namespace Iris {
 		UI_Layer();
 		~UI_Layer();
 
-		void OnUpdate();
-		void OnAttach();
-		void OnDetach();
+		virtual void OnUpdate() override;
+		virtual void OnAttach() override;
+		virtual void OnDetach() override;
 		void OnEvent(Event& event);
 
 	private:

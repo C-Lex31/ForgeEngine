@@ -10,6 +10,12 @@
     <Filter Include="core\events">
       <UniqueIdentifier>{92DC566A-FE91-CF5F-8786-C936F33AC663}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\input">
+      <UniqueIdentifier>{ED821051-D93A-529E-4242-2BFA2E19ED8E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\log">
+      <UniqueIdentifier>{3F57D44A-2B24-2F56-543D-1DFE406964E4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="platform">
       <UniqueIdentifier>{4A63C33C-3630-1E48-5F49-0CF04B7553D6}</UniqueIdentifier>
     </Filter>
@@ -43,16 +49,28 @@
     <ClInclude Include="src\core\events\event.h">
       <Filter>core\events</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\input\input.h">
+      <Filter>core\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\input\keycodes.h">
+      <Filter>core\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\input\mouse_button_codes.h">
+      <Filter>core\input</Filter>
+    </ClInclude>
     <ClInclude Include="src\core\layerStack.h">
       <Filter>core</Filter>
     </ClInclude>
     <ClInclude Include="src\core\layers.h">
       <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\log.h">
-      <Filter>core</Filter>
+    <ClInclude Include="src\core\log\log.h">
+      <Filter>core\log</Filter>
     </ClInclude>
     <ClInclude Include="src\irpch.h" />
+    <ClInclude Include="src\platform\windows\winInput.h">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\platform\windows\windows.h">
       <Filter>platform\windows</Filter>
     </ClInclude>
@@ -60,6 +78,9 @@
   <ItemGroup>
     <ClCompile Include="src\core\IRlauncher.cpp">
       <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\editor\UIbuild.cpp">
+      <Filter>core\editor</Filter>
     </ClCompile>
     <ClCompile Include="src\core\editor\editor_interface.cpp">
       <Filter>core\editor</Filter>
@@ -70,13 +91,15 @@
     <ClCompile Include="src\core\layers.cpp">
       <Filter>core</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\log.cpp">
-      <Filter>core</Filter>
+    <ClCompile Include="src\core\log\log.cpp">
+      <Filter>core\log</Filter>
     </ClCompile>
     <ClCompile Include="src\irpch.cpp" />
+    <ClCompile Include="src\platform\windows\winInput.cpp">
+      <Filter>platform\windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\platform\windows\windows.cpp">
       <Filter>platform\windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\editor\UIbuild.cpp" />
   </ItemGroup>
 </Project>

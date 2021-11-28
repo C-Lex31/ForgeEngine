@@ -13,11 +13,12 @@ outputdir ="%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir ={}
 IncludeDir["GLFW"] = "dependencies/Libraries/GLFW/include"
 IncludeDir["GLAD"] = "dependencies/Libraries/GLAD/include"
-IncludeDir["UI"]  =  "dependencies/UI"
+
+IncludeDir["UI"]  =  "vendor/UI/main"
 
 include "dependencies/Libraries/GLFW"
 include "dependencies/Libraries/GLAD"
-include "dependencies/UI"
+include "vendor/UI/main"
 
 
 project "IrisEngine"
@@ -57,6 +58,12 @@ project "IrisEngine"
 			  "opengl32.lib"
 
 			  
+		 }
+
+		 postbuildcommands
+		 {
+				   ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+
 		 }
 
 		 filter "system:windows"
@@ -133,7 +140,7 @@ project "IrisEngine"
 
 			 filter "configurations:Debug"
 					 defines "IR_DEBUG"
-			
+			         buildoptions "/MDd"
 					 symbols "On"
 
 			filter "configurations:Release"
