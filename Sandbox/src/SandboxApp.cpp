@@ -10,9 +10,11 @@ public:
 
 	void OnUpdate() override
 	{
-		IR_INFO("BaseLayer::Update");
+	//	IR_INFO("BaseLayer::Update");
 		if (Iris::input::isKeyPressed(IR_KEY_TAB))
 			IR_TRACE("TAB press detected");
+		if (Iris::input::isKeyPressed(IR_KEY_CAPS_LOCK))
+			IR_TRACE("CAPS press detected");
 	}
 
 	void OnEvent(Iris::Event& event)override
@@ -34,6 +36,7 @@ public:
 	{
 
 	}
+	
 };
 
 Iris::Application* Iris::CreateApplication()

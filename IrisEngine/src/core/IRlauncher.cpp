@@ -11,7 +11,7 @@ namespace Iris {
 	Application::Application()
 	{
 		s_Instance = this;
-		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window = std::unique_ptr<Window>(Window::Create());//explicit contructor?
 		m_Window->SetEventCallback(IR_BIND_EVENT_FN(OnEvent));
 		//UI_Layer* m_guiLayer = new UI_Layer();
 		PushOverlay(m_guiLayer);
@@ -51,7 +51,7 @@ namespace Iris {
 		while (m_running)
 		{
 			
-			glClearColor(1, 0, 1, 1);
+			glClearColor(0.2,0.2,0.2,1);
 			glClear(GL_COLOR_BUFFER_BIT);
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();

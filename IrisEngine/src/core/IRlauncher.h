@@ -20,9 +20,9 @@ namespace Iris {
 		void PushOverlay(Layer* layer);
 		Window& GetWindow() { return *m_Window; }
 		static Application& Get() { return *s_Instance; }
-
+		void test_disp() { printf("Test Pass"); }
 	private:
-		std::unique_ptr<Window> m_Window;
+		std::unique_ptr<Window> m_Window;//unique pointer to hold instance of window class.
 		//std::unique_ptr<UI_Layer> m_guiLayer;
 		//UI_Layer* m_guiLayer;
 		bool m_running = true;
@@ -33,4 +33,5 @@ namespace Iris {
 	};
 	//Defined in client
 	Application* CreateApplication();
+	
 }

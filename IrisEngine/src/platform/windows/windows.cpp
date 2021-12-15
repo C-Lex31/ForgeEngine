@@ -2,8 +2,8 @@
 #include "core/events/ApplicationEvent.h"
 #include "core/events/KeyEvents.h"
 #include "core/events/MouseEvents.h"
+#include "windows.h"
 
-#include "glad/glad.h"
 
 
 namespace Iris {
@@ -11,7 +11,7 @@ namespace Iris {
 	static bool s_GLFWInitialized = false;
 	Window* Window::Create(const WindowProps& props)
 	{
-		return new MsWin(props);
+		return new MsWin(props);//returns the window pointer,catched in Application class by a nique pointer
 	}
 
 	MsWin::MsWin(const WindowProps& props)
@@ -34,26 +34,29 @@ namespace Iris {
 		if (!s_GLFWInitialized)
 		{
 			int success = glfwInit();
-			//HZ_CORE_ASSERT(success, "Could not initialize GLFW!");
-			//glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
-		glfwSetWindowUserPointer(m_Window, &m_Data);
+		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);//Why casting to int ?
+		m_context = new opengl_context(m_Window);
+		m_context->Init();
+		
+	
+		glfwSetWindowUserPointer(m_Window, &m_Data);//will be used in event callbacks
+		//m_data here means that we're passing the struct (or pointer to the struct)of data from windows.h
 		SetVSync(true);
-
+		//Callback functions that we specify that will get called(lamdas) whenever an event occurs eg.Key press.
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* win, int width, int height)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(win);
-				WindowResizeEvent event(width, height);
-				data.EventCallback(event);
 				data.Width = width;
 				data.Height = height;
+				WindowResizeEvent event(width, height);
+				data.EventCallback(event);
+				
 			});
 
+		//TODO: Set Window Close Callback.
 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
 			{
@@ -129,7 +132,8 @@ namespace Iris {
 	{
 
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_context->swap_buffers();
+		
 	}
 
 	void MsWin::SetVSync(bool enabled)

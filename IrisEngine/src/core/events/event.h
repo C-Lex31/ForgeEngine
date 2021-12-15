@@ -46,7 +46,7 @@ namespace Iris {
 		{
 			return GetCategoryFlags() & category;
 		}
-	public:
+
 		bool m_handled = false;
 	};
 

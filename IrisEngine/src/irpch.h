@@ -11,6 +11,6 @@
 
 #ifdef  IR_PLATFORM_WINDOWS
 
-#include"platform/windows/windows.h"
+#include"platform/pi_interface.h"
 #endif
 

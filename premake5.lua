@@ -24,9 +24,9 @@ include "vendor/UI/main"
 project "IrisEngine"
       
         location "IrisEngine"
-		kind "SharedLib"
+		kind "StaticLib"
 		language "C++"
-
+		staticruntime "On"
 
 		targetdir("bin/" .. outputdir .. "/%{prj.name}")
 		objdir("obj/" .. outputdir .. "/%{prj.name}")
@@ -39,6 +39,10 @@ project "IrisEngine"
           "%{prj.name}/src/**.h",
           "%{prj.name}/src/**.cpp"
          }
+
+		 defines{
+			  "_CRT_SECURE_NO_WARNINGS"
+		 }
 
 		 includedirs
 		 {
@@ -100,6 +104,7 @@ project "IrisEngine"
 		 location "Sandbox"
 		 kind "ConsoleApp"
 		 language "C++"
+		 staticruntime "On"
 
 		 targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 		 objdir ("obj/" .. outputdir .. "/%{prj.name}")       
