@@ -1,0 +1,6 @@
+#directories
+
+.vs/
+bin/
+obj/
+*.filters

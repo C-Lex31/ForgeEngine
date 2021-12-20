@@ -71,9 +71,15 @@
     <ClInclude Include="src\platform\windows\winInput.h">
       <Filter>platform\windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\platform\windows\windows.h">
+    <ClInclude Include="src\platform\pi_interface.h">
       <Filter>platform\windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\servers\rendering\renderer\graphics_context.h" />
+    <ClInclude Include="src\core\drivers\OpenGL\opengl_context.h" />
+    <ClInclude Include="src\platform\windows\windows.h" />
+    <ClInclude Include="src\core\drivers\OpenGL\opengl_buffer.h" />
+    <ClInclude Include="src\core\servers\rendering\renderer\buffers.h" />
+    <ClInclude Include="src\core\servers\rendering\renderer\renderer_rd.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\IRlauncher.cpp">
@@ -101,5 +107,9 @@
     <ClCompile Include="src\platform\windows\windows.cpp">
       <Filter>platform\windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\drivers\OpenGL\opengl_context.cpp" />
+    <ClCompile Include="src\core\drivers\OpenGL\opengl_buffer.cpp" />
+    <ClCompile Include="src\core\servers\rendering\renderer\buffers.cpp" />
+    <ClCompile Include="src\core\servers\rendering\renderer\renderer_rd.cpp" />
   </ItemGroup>
 </Project>

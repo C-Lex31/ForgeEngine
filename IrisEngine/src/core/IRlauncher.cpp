@@ -15,8 +15,25 @@ namespace Iris {
 		m_Window->SetEventCallback(IR_BIND_EVENT_FN(OnEvent));
 		//UI_Layer* m_guiLayer = new UI_Layer();
 		PushOverlay(m_guiLayer);
-	
+
+		glGenVertexArrays(1, &m_vertexArray);
+		glBindVertexArray(m_vertexArray);
+
+		float vertices[] = {
+			-0.5f, -0.5f, 0.0f,
+			0.5f, -0.5f, 0.0f,
+			0.0f,  0.5f, 0.0f
+		};
+
+		m_vertexBuffer.reset(vertex_buffer::create(vertices, sizeof(vertices)));
+		buffer_layout layout = {
+			{"a_position" ,ShaderDataType::IRfloat3},
+			{"a_normal" ,ShaderDataType::IRfloat3},
+			{"a_color" ,ShaderDataType::IRfloat4}
+		
+		};
 	}
+
 
 	Application::~Application()
 	{
