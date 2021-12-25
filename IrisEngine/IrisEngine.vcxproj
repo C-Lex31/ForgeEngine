@@ -152,14 +152,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\core\drivers\OpenGL\opengl_buffer.h" />
-    <ClInclude Include="src\core\drivers\OpenGL\opengl_context.h" />
-    <ClInclude Include="src\core\servers\rendering\renderer\buffers.h" />
-    <ClInclude Include="src\core\servers\rendering\renderer\graphics_context.h" />
-    <ClInclude Include="src\core\servers\rendering\renderer\renderer_rd.h" />
     <ClInclude Include="src\IrisEngine.h" />
     <ClInclude Include="src\core\IRlauncher.h" />
     <ClInclude Include="src\core\core.h" />
+    <ClInclude Include="src\core\drivers\OpenGL\opengl_buffer.h" />
+    <ClInclude Include="src\core\drivers\OpenGL\opengl_context.h" />
+    <ClInclude Include="src\core\drivers\OpenGL\opengl_vertexArray.h" />
     <ClInclude Include="src\core\editor\editor_interface.h" />
     <ClInclude Include="src\core\entry_point.h" />
     <ClInclude Include="src\core\events\ApplicationEvent.h" />
@@ -172,15 +170,21 @@
     <ClInclude Include="src\core\layerStack.h" />
     <ClInclude Include="src\core\layers.h" />
     <ClInclude Include="src\core\log\log.h" />
+    <ClInclude Include="src\core\servers\rendering\renderer\buffers.h" />
+    <ClInclude Include="src\core\servers\rendering\renderer\graphics_context.h" />
+    <ClInclude Include="src\core\servers\rendering\renderer\renderer_rd.h" />
+    <ClInclude Include="src\core\servers\rendering\renderer\shader.h" />
+    <ClInclude Include="src\core\servers\rendering\renderer\vertexArray.h" />
     <ClInclude Include="src\irpch.h" />
-    <ClInclude Include="src\platform\windows\windows.h" />
-    <ClInclude Include="src\platform\windows\winInput.h" />
     <ClInclude Include="src\platform\pi_interface.h" />
+    <ClInclude Include="src\platform\windows\winInput.h" />
+    <ClInclude Include="src\platform\windows\windows.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\IRlauncher.cpp" />
     <ClCompile Include="src\core\drivers\OpenGL\opengl_buffer.cpp" />
     <ClCompile Include="src\core\drivers\OpenGL\opengl_context.cpp" />
-    <ClCompile Include="src\core\IRlauncher.cpp" />
+    <ClCompile Include="src\core\drivers\OpenGL\opengl_vertexArray.cpp" />
     <ClCompile Include="src\core\editor\UIbuild.cpp" />
     <ClCompile Include="src\core\editor\editor_interface.cpp" />
     <ClCompile Include="src\core\layerStack.cpp" />
@@ -188,6 +192,8 @@
     <ClCompile Include="src\core\log\log.cpp" />
     <ClCompile Include="src\core\servers\rendering\renderer\buffers.cpp" />
     <ClCompile Include="src\core\servers\rendering\renderer\renderer_rd.cpp" />
+    <ClCompile Include="src\core\servers\rendering\renderer\shader.cpp" />
+    <ClCompile Include="src\core\servers\rendering\renderer\vertexArray.cpp" />
     <ClCompile Include="src\irpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

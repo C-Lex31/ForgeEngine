@@ -2,9 +2,6 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\The Iris\IrisEngine\bin\Debug-windows-x86_64\IrisEngine\IrisEngine.dll</FullPath>
-    </ProjectOutput>
-    <ProjectOutput>
       <FullPath>D:\The Iris\IrisEngine\bin\Debug-windows-x86_64\Sandbox\Sandbox.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
