@@ -1,6 +1,0 @@
-﻿cl : command line warning D9025: overriding '/MTd' with '/MDd'
-  SandboxApp.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-D:\The Iris\IrisEngine\dependencies\Libraries\GLFW\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
-LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
-  Sandbox.vcxproj -> D:\The Iris\IrisEngine\bin\Debug-windows-x86_64\Sandbox\Sandbox.exe
