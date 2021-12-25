@@ -1,6 +1,6 @@
 //#include <iostream>
 #include <IrisEngine.h>
-
+#include "imgui.h"
 class Test_Layer :public Iris::Layer
 {
 public:
@@ -17,6 +17,13 @@ public:
 			IR_TRACE("CAPS press detected");
 	}
 
+	virtual void OnGUIRender () override
+	{
+		ImGui::Begin("Render Test");
+		ImGui::Text("Prakhar");
+		ImGui::End();
+	}
+
 	void OnEvent(Iris::Event& event)override
 	{
 		//IR_INFO("{0}", event);
@@ -30,7 +37,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new Test_Layer());   
-		//PushOverlay(new Iris::UI_Layer());
+	//	PushOverlay(new Test_Layer());
 	}
 	~Sandbox()
 	{

@@ -118,9 +118,10 @@ project "IrisEngine"
 		 includedirs
 		 {
 		      "vendor/thirdparty/LOG/include",
-			 "IrisEngine/src",
-			 "%{IncludeDir.GLFW}",
-			   "%{IncludeDir.GLAD}"
+			  "vendor/UI/main",
+			  "IrisEngine/src",
+			  "%{IncludeDir.GLFW}",
+			  "%{IncludeDir.GLAD}"
 			 
 		 }
 

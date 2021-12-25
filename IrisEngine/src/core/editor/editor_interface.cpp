@@ -1,8 +1,10 @@
 #include "irpch.h"
 #include "editor_interface.h"
 //#include <imgui.h>
+#include "core/IRlauncher.h"
 #include <backends/imgui_impl_glfw.h>
 #include <backends/imgui_impl_opengl3.h>
+#include <glad/glad.h>
 namespace Iris {
 
 	UI_Layer::UI_Layer()
@@ -10,10 +12,7 @@ namespace Iris {
 	{
 
 	}
-	UI_Layer::~UI_Layer()
-	{
-
-	}
+	
 	void UI_Layer::OnAttach()
 	{
 		IMGUI_CHECKVERSION();
@@ -26,9 +25,9 @@ namespace Iris {
 		//io.ConfigViewportsNoAutoMerge = true;
 		//io.ConfigViewportsNoTaskBarIcon = true;
 
-		// Setup Dear ImGui style
-		ImGui::StyleColorsDark();
-		//ImGui::StyleColorsClassic();
+		// Setup Gui style
+		//ImGui::StyleColorsDark();
+		ImGui::StyleColorsClassic();
 
 		// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
 		ImGuiStyle& style = ImGui::GetStyle();
@@ -81,6 +80,7 @@ namespace Iris {
 	{
 		static bool show = true;
 		ImGui::ShowDemoWindow(&show);
+		
 	}
 	
 
