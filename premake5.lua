@@ -14,11 +14,11 @@ IncludeDir ={}
 IncludeDir["GLFW"] = "dependencies/Libraries/GLFW/include"
 IncludeDir["GLAD"] = "dependencies/Libraries/GLAD/include"
 
-IncludeDir["UI"]  =  "vendor/UI/main"
+IncludeDir["UI"]  =  "vendor/UI/central"
 
 include "dependencies/Libraries/GLFW"
 include "dependencies/Libraries/GLAD"
-include "vendor/UI/main"
+include "vendor/UI/central"
 
 
 project "engine"
@@ -115,7 +115,7 @@ project "engine"
 		 {
 		      "vendor/thirdparty/LOG/include",
 			   "dependencies/Libraries/GLM/glm",
-			  "vendor/UI/main",
+			  "vendor/UI/central",
 			  "engine/source",
 			  "%{IncludeDir.GLFW}",
 			  "%{IncludeDir.GLAD}"
