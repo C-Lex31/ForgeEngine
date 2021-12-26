@@ -5,3 +5,6 @@ bin/
 obj/
 *.filters
 *.obj
+*.idb
+*.obj
+*.obj

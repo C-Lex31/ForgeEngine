@@ -21,23 +21,24 @@ include "dependencies/Libraries/GLAD"
 include "vendor/UI/main"
 
 
-project "IrisEngine"
+project "engine"
       
-        location "IrisEngine"
+        location "engine"
 		kind "StaticLib"
 		language "C++"
-		staticruntime "On"
+		cppdialect "C++17"
+		staticruntime "on"
 
 		targetdir("bin/" .. outputdir .. "/%{prj.name}")
 		objdir("obj/" .. outputdir .. "/%{prj.name}")
 
 		pchheader "irpch.h"
-		pchsource "IrisEngine/src/irpch.cpp"
+		pchsource "engine/source/irpch.cpp"
 
 		 files
          {
-          "%{prj.name}/src/**.h",
-          "%{prj.name}/src/**.cpp"
+          "%{prj.name}/source/**.h",
+          "%{prj.name}/source/**.cpp"
          }
 
 		 defines{
@@ -46,8 +47,9 @@ project "IrisEngine"
 
 		 includedirs
 		 {
-			   "%{prj.name}/src",
+			   "%{prj.name}/source",
 			  "vendor/thirdparty/LOG/include",
+			  "dependencies/Libraries/GLM",
 			  "%{IncludeDir.GLFW}",
 			   "%{IncludeDir.GLAD}",
 			   "%{IncludeDir.UI}"
@@ -60,19 +62,12 @@ project "IrisEngine"
 			  "GLAD",
 			  "ImGui",
 			  "opengl32.lib"
-
-			  
 		 }
 
-		 postbuildcommands
-		 {
-				   ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-
-		 }
 
 		 filter "system:windows"
-			cppdialect "C++17"
-			staticruntime "On"
+			
+			staticruntime "on"
 			systemversion "latest"
 
 			defines
@@ -85,41 +80,43 @@ project "IrisEngine"
 			filter "configurations:Debug"
 					 defines "IR_DEBUG"
 					 buildoptions "/MDd"
-					 symbols "On"
+					 symbols "on"
 
 			filter "configurations:Release"
 					defines "IR_RELEASE"
 					buildoptions "/MD"
-					optimize "On"
+					optimize "on"
 
 			filter "configurations:Dist"
 					defines "IR_DIST"
 					buildoptions "/MD"
-					optimize "On"
+					optimize "on"
 
 			
 
- project "Sandbox"
+ project "IrisApplication"
 
-		 location "Sandbox"
+		 location "runtime"
 		 kind "ConsoleApp"
 		 language "C++"
-		 staticruntime "On"
+		 cppdialect "C++17"
+		 staticruntime "on"
 
 		 targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 		 objdir ("obj/" .. outputdir .. "/%{prj.name}")       
 
 		  files
          {
-          "%{prj.name}/src/**.h",
-          "%{prj.name}/src/**.cpp"
+          "%{prj.name}/source/**.h",
+          "%{prj.name}/source/**.cpp"
          }
 
 		 includedirs
 		 {
 		      "vendor/thirdparty/LOG/include",
+			   "dependencies/Libraries/GLM/glm",
 			  "vendor/UI/main",
-			  "IrisEngine/src",
+			  "engine/source",
 			  "%{IncludeDir.GLFW}",
 			  "%{IncludeDir.GLAD}"
 			 
@@ -127,36 +124,35 @@ project "IrisEngine"
 
 		 links
 		 {
-			 "IrisEngine",
+			 "engine",
 			 "GLFW",
 			  "GLAD"
 			
 		 }
 
 		 filter "system:windows"
-			cppdialect "C++17"
-			staticruntime "On"
+			
+			staticruntime "on"
 			systemversion "latest"
 
 			defines
 			{
 			   "IR_PLATFORM_WINDOWS"
-			  
 			}
 
 			 filter "configurations:Debug"
 					 defines "IR_DEBUG"
 			         buildoptions "/MDd"
-					 symbols "On"
+					 symbols "on"
 
 			filter "configurations:Release"
 					defines "IR_RELEASE"
 					
-					optimize "On"
+					optimize "on"
 
 			filter "configurations:Dist"
 					defines "IR_DIST"
 			
-					optimize "On"
+					optimize "on"
 
 			
