@@ -1,5 +1,8 @@
 #pragma once
-#include <string>
+ #include <string>
+
+#include <glm/glm.hpp>
+
 namespace Iris {
 
 
@@ -10,6 +13,8 @@ namespace Iris {
 		~shader();
 		void bind() const;
 		void unbind() const;
+
+		void UploadUniformMat4(const std::string& name ,const glm::mat4& matrix);
 
 	private:
 		uint32_t m_rendererID;
