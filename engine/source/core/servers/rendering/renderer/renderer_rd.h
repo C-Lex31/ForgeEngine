@@ -1,17 +1,19 @@
 #pragma once
 
+#include "render_commands.h"
 namespace Iris {
 
-	enum class renderer_api
-	{
-		None = 0, OpenGL = 1
-	};
 
 	class renderer
 	{
 	public:
-		inline static renderer_api get_api() { return s_renderer_api; }
-	private:
-		static renderer_api s_renderer_api;
+
+		static void IR_BeginScene();
+		static void IR_EndScene();
+
+		static void IR_Submit(const std::shared_ptr<vertex_array>& va);
+
+		inline static renderer_api::api get_api() { return renderer_api::getAPI(); }
+
 	};
 }
