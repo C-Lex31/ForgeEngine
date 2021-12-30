@@ -1,9 +1,9 @@
 #include "irpch.h"
 #include "IRlauncher.h"
 #include "core/events/ApplicationEvent.h"
-#include "glad/glad.h" 
+//#include "glad/glad.h" 
 #include "core/input/input.h"
-
+#include "core/servers/rendering/renderer/renderer_rd.h"
 
 namespace Iris {
 #define IR_BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
@@ -109,11 +109,22 @@ namespace Iris {
 		while (m_running)
 		{
 
-			glClearColor(0.2, 0.2, 0.2, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+		//	glClearColor(0.2, 0.2, 0.2, 1);
+		//	glClear(GL_COLOR_BUFFER_BIT);
+			render_commands::SetClearColor({ 0.2, 0.2, 0.2, 1 });
+			render_commands::clear();
+
+
+			renderer::IR_BeginScene();
+
 			m_shader->bind();
-			m_vertexArray->bind();
-				glDrawElements(GL_TRIANGLES,m_indexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+			renderer::IR_Submit(m_vertexArray);
+
+			renderer::IR_EndScene();
+
+			
+		//	m_vertexArray->bind();
+			//	glDrawElements(GL_TRIANGLES,m_indexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();

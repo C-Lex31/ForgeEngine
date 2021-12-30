@@ -8,3 +8,8 @@ obj/
 *.idb
 *.obj
 *.obj
+*.idb
+*.pdb
+*.log
+*.log
+*.obj
