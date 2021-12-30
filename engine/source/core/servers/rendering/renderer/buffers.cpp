@@ -8,8 +8,8 @@ namespace Iris {
 	{
 		switch (renderer::get_api())
 		{
-		case renderer_api::None: return nullptr;
-		case renderer_api::OpenGL: return new OpenGLVertexBuffer(vertices,size) ;
+		case renderer_api::api:: None  : return nullptr;
+		case renderer_api::api:: OpenGL: return new OpenGLVertexBuffer(vertices,size) ;
 		}
 		return 0;
 	}
@@ -17,8 +17,8 @@ namespace Iris {
 	{
 		switch (renderer::get_api())
 		{
-		case renderer_api::None:     return nullptr;
-		case renderer_api::OpenGL:  return new OpenGLIndexBuffer(indices, size);
+		case renderer_api::api::None  :     return nullptr;
+		case renderer_api::api::OpenGL:     return new OpenGLIndexBuffer(indices, size);
 		}
 
 		return nullptr;

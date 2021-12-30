@@ -1,4 +1,4 @@
-workspace "Iris"
+workspace "IrisEngine"
 
    architecture "x64"
    configurations
@@ -29,7 +29,7 @@ project "engine"
 		cppdialect "C++17"
 		staticruntime "on"
 
-		targetdir("bin/" .. outputdir .. "/%{prj.name}")
+		targetdir("binaries/" .. outputdir .. "/%{prj.name}")
 		objdir("obj/" .. outputdir .. "/%{prj.name}")
 
 		pchheader "irpch.h"
@@ -102,7 +102,7 @@ project "engine"
 		 cppdialect "C++17"
 		 staticruntime "on"
 
-		 targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+		 targetdir ("binaries/" .. outputdir .. "/%{prj.name}")
 		 objdir ("obj/" .. outputdir .. "/%{prj.name}")       
 
 		  files
