@@ -13,3 +13,7 @@ obj/
 *.log
 *.log
 *.obj
+*.idb
+*.lib
+*.obj
+*.vcxproj
