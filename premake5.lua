@@ -13,7 +13,6 @@ outputdir ="%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir ={}
 IncludeDir["GLFW"] = "dependencies/Libraries/GLFW/include"
 IncludeDir["GLAD"] = "dependencies/Libraries/GLAD/include"
-
 IncludeDir["UI"]  =  "vendor/UI/central"
 
 include "dependencies/Libraries/GLFW"
@@ -108,13 +107,13 @@ project "engine"
 		  files
          {
           "%{prj.name}/source/**.h",
-          "%{prj.name}/source/**.cpp"
+          "%{prj.name}/source/**.cpp",
          }
 
 		 includedirs
 		 {
 		      "vendor/thirdparty/LOG/include",
-			   "dependencies/Libraries/GLM/glm",
+			   "dependencies/Libraries/GLM",
 			  "vendor/UI/central",
 			  "engine/source",
 			  "%{IncludeDir.GLFW}",

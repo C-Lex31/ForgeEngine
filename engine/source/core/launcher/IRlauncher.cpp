@@ -1,29 +1,27 @@
 #include "irpch.h"
 #include "IRlauncher.h"
 #include "core/events/ApplicationEvent.h"
-//#include "glad/glad.h" 
 #include "core/input/input.h"
 #include "core/servers/rendering/renderer/renderer_rd.h"
 
 namespace Iris {
 #define IR_BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
 	Application* Application::s_Instance = nullptr;
-	//UI_Layer* m_guiLayer = new UI_Layer();
 	Application::Application()
+		:m_Cam2d(-1.0f,2.0f,-1.0f,2.0f)
 	{
 		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());//explicit contructor?
 		m_Window->SetEventCallback(IR_BIND_EVENT_FN(OnEvent));
 		 m_guiLayer = new UI_Layer();
-		//m_guiLayer = new UI_Layer();
 		PushOverlay(m_guiLayer);
 
 		m_vertexArray.reset(vertex_array::create());
 
 		float vertices[] = {
-			-0.5f, -0.5f, 0.0f,   1.0f ,0.3f , 0.02f,1,
-			0.5f, -0.5f, 0.0f,    0.5f ,0.4f , 0.17f,1,
-			0.0f,  0.5f, 0.0f,    0.0f ,0.8f , 0.02f,1
+			-0.5f, -0.5f, 0.0f,   0.6f ,0.08f , 0.6f,1,  // R G B A format
+			0.5f, -0.5f, 0.0f,    0.7f ,0.1f , 0.07f,1,
+			0.0f,  0.5f, 0.0f,    0.8f ,0.5f , 0.02f,1
 		};
 
 		m_vertexBuffer.reset(vertex_buffer::create(vertices, sizeof(vertices)));
@@ -31,7 +29,6 @@ namespace Iris {
 		buffer_layout layout = {
 			{"a_position" ,ShaderDataType::IRfloat3},
 			{"a_color" ,ShaderDataType::IRfloat4}
-
 		};
 
 		m_vertexBuffer->SetLayout(layout);
@@ -45,15 +42,17 @@ namespace Iris {
 
 		#version 330 core
 		layout (location = 0) in vec3 aPos;
+		layout (location =1) in vec4 aColor;
 		out vec3 vPos;
+		out vec4 vColor;
+		uniform mat4 u_ViewProjectionMatrix;		
 
-		
 		void main()
 		{
         
 		vPos=aPos;
-	
-		gl_Position = vec4(aPos, 1.0);
+		vColor=aColor;
+		gl_Position = u_ViewProjectionMatrix * vec4(aPos, 1.0);
 		}
 
 	)";
@@ -63,9 +62,11 @@ namespace Iris {
 		#version 330 core
 		layout(location=0) out vec4 FragColor;
 		in vec3 vPos;
+		in vec4 vColor;
 		void main()
 		{
 		 FragColor = vec4(vPos*0.5+0.5, 1.0f);
+		 FragColor =vColor;
 		}
 
 
@@ -104,27 +105,19 @@ namespace Iris {
 	}
 	void Application::Run()
 	{
-		//WindowResizeEvent e(270, 180);//Creating parameterized obj of class WindowResizeEvent
-		//IR_TRACE(e);
+		
 		while (m_running)
 		{
-
-		//	glClearColor(0.2, 0.2, 0.2, 1);
-		//	glClear(GL_COLOR_BUFFER_BIT);
 			render_commands::SetClearColor({ 0.2, 0.2, 0.2, 1 });
 			render_commands::clear();
-
 
 			renderer::IR_BeginScene();
 
 			m_shader->bind();
+			m_shader->UploadUniformMat4("u_ViewProjectionMatrix", m_Cam2d.GetViewProjectionMatrix());
 			renderer::IR_Submit(m_vertexArray);
 
 			renderer::IR_EndScene();
-
-			
-		//	m_vertexArray->bind();
-			//	glDrawElements(GL_TRIANGLES,m_indexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
