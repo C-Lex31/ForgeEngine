@@ -9,8 +9,8 @@ namespace Iris {
 	{
 		switch (renderer::get_api())
 		{
-		case renderer_api::None: return nullptr;
-		case renderer_api::OpenGL: return new OpenGLVertexArray();
+		case renderer_api::api::None: return nullptr;
+		case renderer_api::api::OpenGL: return new OpenGLVertexArray();
 		}
 		return 0;
 	}
