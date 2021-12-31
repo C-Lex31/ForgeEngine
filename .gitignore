@@ -17,3 +17,6 @@ obj/
 *.lib
 *.obj
 *.vcxproj
+*.idb
+*.pdb
+*.obj
