@@ -20,3 +20,6 @@ obj/
 *.idb
 *.pdb
 *.obj
+*.idb
+*.lib
+*.pdb
