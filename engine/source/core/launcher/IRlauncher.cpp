@@ -8,7 +8,7 @@ namespace Iris {
 #define IR_BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
 	Application* Application::s_Instance = nullptr;
 	Application::Application()
-		:m_Cam2d(-1.0f,2.0f,-1.0f,2.0f)
+		:m_Cam2d(-1.0f,1.0f,-1.0f,1.0f)
 	{
 		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());//explicit contructor?
@@ -111,11 +111,10 @@ namespace Iris {
 			render_commands::SetClearColor({ 0.2, 0.2, 0.2, 1 });
 			render_commands::clear();
 
-			renderer::IR_BeginScene();
+			renderer::IR_BeginScene(m_Cam2d);
 
-			m_shader->bind();
-			m_shader->UploadUniformMat4("u_ViewProjectionMatrix", m_Cam2d.GetViewProjectionMatrix());
-			renderer::IR_Submit(m_vertexArray);
+		
+			renderer::IR_Submit(m_vertexArray,m_shader);
 
 			renderer::IR_EndScene();
 
