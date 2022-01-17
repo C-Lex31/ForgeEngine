@@ -3,7 +3,7 @@
 #include <memory>
 #include "buffers.h"
 
-namespace Iris {
+namespace Forge {
 
 	class vertex_array
 	{

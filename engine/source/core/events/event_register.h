@@ -4,7 +4,7 @@
 #include <functional>
 #include <string>
 
-namespace Iris {
+namespace Forge {
 
 	enum class EventType
 	{
@@ -32,7 +32,7 @@ namespace Iris {
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
 
-	class IRIS_API Event
+	class FORGE_API Event
 	{
 		friend class EventDispatcher;
 	public:

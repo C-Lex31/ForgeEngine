@@ -1,8 +1,8 @@
-#include "irpch.h"
+#include "frpch.h"
 #include "buffers.h"
 #include "renderer_rd.h"
 #include "core/drivers/OpenGL/opengl_buffer.h"
-namespace Iris {
+namespace Forge {
 
 	vertex_buffer* vertex_buffer::create(float* vertices, uint32_t size)
 	{

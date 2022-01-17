@@ -1,25 +1,25 @@
 #pragma once
 
 
-# ifdef IR_PLATFORM_WINDOWS
-# if IR_DYNAMIC_LINK
-       #ifdef IR_BUILD_DLL
-            #define IRIS_API __declspec(dllexport)
+# ifdef FR_PLATFORM_WINDOWS
+# if FR_DYNAMIC_LINK
+       #ifdef FR_BUILD_DLL
+            #define FORGE_API __declspec(dllexport)
         
        #else  
-            #define IRIS_API __declspec(dllimport)
+            #define FORGE_API __declspec(dllimport)
 
        #endif
 #else
-       #define IRIS_API
+       #define FORGE_API
 #endif
 #else 
-     #error Iris Engine only supports Windows for now
+     #error Forge Engine only supports Windows for now
 
 #endif
 #define BIT(x) (1 <<x )
 
-#define IR_BIND_EVENT_FN(fn) std::bind(&fn, this ,std::placeholders::_1 )
+#define FR_BIND_EVENT_FN(fn) std::bind(&fn, this ,std::placeholders::_1 )
 
 
 

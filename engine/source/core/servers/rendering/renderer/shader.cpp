@@ -1,8 +1,8 @@
-#include"irpch.h"
+#include"frpch.h"
 #include"shader.h"
 #include "glad/glad.h"
 #include <glm/gtc/type_ptr.hpp>
-namespace Iris {
+namespace Forge {
 
 	shader::shader(const std::string& vertexSrc, const std::string& fragSrc)
 	{
@@ -35,8 +35,8 @@ namespace Iris {
 			glDeleteShader(vertexShader);
 
 			// Use the infoLog as you see fit.
-			IR_CORE_ERROR("Vertex Shader compilation failed");
-			IR_CORE_ERROR("{0}", infoLog.data());
+			FR_CORE_ERROR("Vertex Shader compilation failed");
+			FR_CORE_ERROR("{0}", infoLog.data());
 			return;
 		}
 
@@ -67,8 +67,8 @@ namespace Iris {
 			glDeleteShader(vertexShader);
 
 			// Use the infoLog as you see fit.
-			IR_CORE_ERROR("Fragment Shader compilation failed");
-			IR_CORE_ERROR("{0}", infoLog.data());
+			FR_CORE_ERROR("Fragment Shader compilation failed");
+			FR_CORE_ERROR("{0}", infoLog.data());
 			// In this simple program, we'll just leave
 			return;
 		}
@@ -105,8 +105,8 @@ namespace Iris {
 			glDeleteShader(fragmentShader);
 
 			// Use the infoLog as you see fit.
-			IR_CORE_ERROR(" Shader linking failed");
-			IR_CORE_ERROR("{0}", infoLog.data());
+			FR_CORE_ERROR(" Shader linking failed");
+			FR_CORE_ERROR("{0}", infoLog.data());
 			// In this simple program, we'll just leave
 			return;
 		}

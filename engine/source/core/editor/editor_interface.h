@@ -7,7 +7,7 @@
 #include "core/events/ApplicationEvent.h"
 
 
-namespace Iris {
+namespace Forge {
 	class  UI_Layer :public Layer
 	{
 	public:

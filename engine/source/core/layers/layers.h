@@ -1,11 +1,11 @@
 #pragma once
 
 #include "core/core.h"
-#include "core/events/event.h"
+#include "core/events/event_register.h"
 
-namespace Iris {
+namespace Forge {
 
-	class IRIS_API Layer
+	class FORGE_API Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");

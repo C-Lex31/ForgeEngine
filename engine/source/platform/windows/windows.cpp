@@ -1,4 +1,4 @@
-#include "irpch.h"
+#include "frpch.h"
 #include "core/events/ApplicationEvent.h"
 #include "core/events/KeyEvents.h"
 #include "core/events/MouseEvents.h"
@@ -6,7 +6,7 @@
 
 
 
-namespace Iris {
+namespace Forge {
 
 	static bool s_GLFWInitialized = false;
 	Window* Window::Create(const WindowProps& props)
@@ -29,7 +29,7 @@ namespace Iris {
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 		
-		IR_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+		FR_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
 		if (!s_GLFWInitialized)
 		{

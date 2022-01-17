@@ -1,7 +1,7 @@
 #pragma once
 #include"core/servers/rendering/renderer/buffers.h"
 
-namespace Iris {
+namespace Forge {
 	class OpenGLVertexBuffer:public vertex_buffer
 	{
 	public:

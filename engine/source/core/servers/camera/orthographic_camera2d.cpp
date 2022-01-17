@@ -1,7 +1,7 @@
-#include "irpch.h"
+#include "frpch.h"
 #include "orthographic_camera2d.h"
 #include <glm/gtc/matrix_transform.hpp>
-namespace Iris {
+namespace Forge {
 
 	orthographic_camera2d::orthographic_camera2d(float left, float right, float bottom, float up)
 		:m_ProjectionMatrix(glm::ortho(left,right,bottom,up,-1.0f,1.0f)),m_ViewMatrix(1.0f)

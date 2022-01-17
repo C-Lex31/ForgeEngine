@@ -2,7 +2,7 @@
 
 #include "core/servers/rendering/renderer/vertexArray.h"
 
-namespace Iris {
+namespace Forge {
 
 	class OpenGLVertexArray:public vertex_array
 	{

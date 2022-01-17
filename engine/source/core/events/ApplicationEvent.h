@@ -1,9 +1,9 @@
 #pragma once
 
 #include <sstream>
-#include "event.h"
+#include "event_register.h"
 
-namespace Iris {
+namespace Forge {
 
 	class WindowResizeEvent : public Event
 	{

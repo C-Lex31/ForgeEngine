@@ -6,9 +6,9 @@
 #include "core/core.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
-namespace Iris {
+namespace Forge {
 
-	class IRIS_API Log
+	class FORGE_API Log
 	{
 	public:
 		static void Init();
@@ -23,15 +23,15 @@ namespace Iris {
 
 }
 
-#define IR_CORE_TRACE(...)  ::Iris::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define IR_CORE_INFO(...)   ::Iris::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define IR_CORE_WARN(...)   ::Iris::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define IR_CORE_ERROR(...)  ::Iris::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define IR_CORE_FATAL(...)  ::Iris::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define FR_CORE_TRACE(...)  ::Forge::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define FR_CORE_INFO(...)   ::Forge::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define FR_CORE_WARN(...)   ::Forge::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define FR_CORE_ERROR(...)  ::Forge::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define FR_CORE_FATAL(...)  ::Forge::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 
-#define IR_TRACE(...)  ::Iris::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define IR_INFO(...)   ::Iris::Log::GetClientLogger()->info(__VA_ARGS__)
-#define IR_WARN(...)   ::Iris::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define IR_ERROR(...)  ::Iris::Log::GetClientLogger()->error(__VA_ARGS__)
-#define IR_FATAL(...)  ::Iris::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define FR_TRACE(...)  ::Forge::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define FR_INFO(...)   ::Forge::Log::GetClientLogger()->info(__VA_ARGS__)
+#define FR_WARN(...)   ::Forge::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define FR_ERROR(...)  ::Forge::Log::GetClientLogger()->error(__VA_ARGS__)
+#define FR_FATAL(...)  ::Forge::Log::GetClientLogger()->fatal(__VA_ARGS__)

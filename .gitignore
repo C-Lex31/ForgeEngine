@@ -23,3 +23,4 @@ obj/
 *.idb
 *.lib
 *.pdb
+vendor/UI/central

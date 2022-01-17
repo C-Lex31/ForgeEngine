@@ -2,7 +2,7 @@
 
 #include <glm/glm.hpp>
 
-namespace Iris {
+namespace Forge {
 
 	class orthographic_camera2d
 	{

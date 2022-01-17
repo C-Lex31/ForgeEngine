@@ -1,14 +1,14 @@
 #pragma once
 
 #include <sstream>
-#include "core/events/event.h"
+#include "core/events/event_register.h"
 #include "core/core.h"
 #include "GLFW/glfw3.h"
 //#include "glad/glad.h"
 
 
 
-namespace Iris {
+namespace Forge {
 
 	struct WindowProps
 	{
@@ -25,7 +25,7 @@ namespace Iris {
 	};
 
 	//To be implemented per platform,its just an interface
-	class IRIS_API Window
+	class FORGE_API Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

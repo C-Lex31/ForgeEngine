@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Iris {
+namespace Forge {
 
 	class graphics_context
 	

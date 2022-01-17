@@ -1,4 +1,4 @@
-workspace "IrisEngine"
+workspace "ForgeEngine"
 
    architecture "x64"
    configurations
@@ -31,8 +31,8 @@ project "engine"
 		targetdir("binaries/" .. outputdir .. "/%{prj.name}")
 		objdir("obj/" .. outputdir .. "/%{prj.name}")
 
-		pchheader "irpch.h"
-		pchsource "engine/source/irpch.cpp"
+		pchheader "frpch.h"
+		pchsource "engine/source/frpch.cpp"
 
 		 files
          {
@@ -71,29 +71,26 @@ project "engine"
 
 			defines
 			{
-			   "IR_PLATFORM_WINDOWS",
-			   "IR_BUILD_DLL",
+			   "FR_PLATFORM_WINDOWS",
+			   "FR_BUILD_DLL",
 			   "GLFW_INCLUDE_NONE"
 			}
 
 			filter "configurations:Debug"
-					 defines "IR_DEBUG"
+					 defines "FR_DEBUG"
 					 buildoptions "/MDd"
 					 symbols "on"
 
 			filter "configurations:Release"
-					defines "IR_RELEASE"
+					defines "FR_RELEASE"
 					buildoptions "/MD"
 					optimize "on"
 
-			filter "configurations:Dist"
-					defines "IR_DIST"
-					buildoptions "/MD"
-					optimize "on"
+		
 
 			
 
- project "IrisApplication"
+ project "ForgeApp"
 
 		 location "runtime"
 		 kind "ConsoleApp"
@@ -136,22 +133,19 @@ project "engine"
 
 			defines
 			{
-			   "IR_PLATFORM_WINDOWS"
+			   "FR_PLATFORM_WINDOWS"
 			}
 
 			 filter "configurations:Debug"
-					 defines "IR_DEBUG"
+					 defines "FR_DEBUG"
 			         buildoptions "/MDd"
 					 symbols "on"
 
 			filter "configurations:Release"
-					defines "IR_RELEASE"
+					defines "FR_RELEASE"
 					
 					optimize "on"
 
-			filter "configurations:Dist"
-					defines "IR_DIST"
-			
-					optimize "on"
+		
 
 			

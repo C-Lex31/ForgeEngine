@@ -1,22 +1,22 @@
-#include "irpch.h"
-#include "IRlauncher.h"
+#include "frpch.h"
+#include "main.h"
 #include "core/events/ApplicationEvent.h"
 #include "core/input/input.h"
 #include "core/servers/rendering/renderer/renderer_rd.h"
 
-namespace Iris {
-#define IR_BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
+namespace Forge {
+#define FR_BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
 	Application* Application::s_Instance = nullptr;
 	Application::Application()
-		:m_Cam2d(-1.0f,1.0f,-1.0f,1.0f)
+		//:m_Cam2d(-1.0f,1.0f,-1.0f,1.0f)
 	{
 		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());//explicit contructor?
-		m_Window->SetEventCallback(IR_BIND_EVENT_FN(OnEvent));
+		m_Window->SetEventCallback(FR_BIND_EVENT_FN(OnEvent));
 		 m_guiLayer = new UI_Layer();
 		PushOverlay(m_guiLayer);
 
-		m_vertexArray.reset(vertex_array::create());
+		/*m_vertexArray.reset(vertex_array::create());
 
 		float vertices[] = {
 			-0.5f, -0.5f, 0.0f,   0.6f ,0.08f , 0.6f,1,  // R G B A format
@@ -72,7 +72,7 @@ namespace Iris {
 
 
 )";
-		m_shader.reset(new shader(vertexSrc, fragmentSrc));
+		m_shader.reset(new shader(vertexSrc, fragmentSrc));*/
 	}
  
 
@@ -108,7 +108,7 @@ namespace Iris {
 		
 		while (m_running)
 		{
-			render_commands::SetClearColor({ 0.2, 0.2, 0.2, 1 });
+			/*render_commands::SetClearColor({0.2, 0.2, 0.2, 1});
 			render_commands::clear();
 
 			renderer::IR_BeginScene(m_Cam2d);
@@ -116,7 +116,7 @@ namespace Iris {
 		
 			renderer::IR_Submit(m_vertexArray,m_shader);
 
-			renderer::IR_EndScene();
+			renderer::IR_EndScene();*/
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
@@ -128,6 +128,7 @@ namespace Iris {
 				layer->OnGUIRender();
 				
 			}
+
 			m_guiLayer->End();
 			
 			m_Window->OnUpdate();

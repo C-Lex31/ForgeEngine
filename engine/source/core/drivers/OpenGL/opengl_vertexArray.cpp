@@ -1,23 +1,23 @@
-#include "irpch.h"
+#include "frpch.h"
 #include "opengl_vertexArray.h"
 #include "glad/glad.h"
-namespace Iris {
+namespace Forge {
 
 	static GLenum sdtToGLtype(ShaderDataType type)
 	{
 		switch (type)
 		{
-		case Iris::ShaderDataType::IRfloat :  return GL_FLOAT;
-		case Iris::ShaderDataType::IRfloat2:  return GL_FLOAT;
-		case Iris::ShaderDataType::IRfloat3:  return GL_FLOAT;
-		case Iris::ShaderDataType::IRfloat4:  return GL_FLOAT;
-		case Iris::ShaderDataType::IRvec3 :   return GL_FLOAT;
-		case Iris::ShaderDataType::IRvec4 :   return GL_FLOAT;
-		case Iris::ShaderDataType::IRint  :   return GL_INT;
-		case Iris::ShaderDataType::IRint2 :   return GL_INT;
-		case Iris::ShaderDataType::IRint3 :   return GL_INT;
-		case Iris::ShaderDataType::IRint4 :   return GL_INT;
-		case Iris::ShaderDataType::IRbool:    return GL_BOOL;
+		case Forge::ShaderDataType::IRfloat :  return GL_FLOAT;
+		case Forge::ShaderDataType::IRfloat2:  return GL_FLOAT;
+		case Forge::ShaderDataType::IRfloat3:  return GL_FLOAT;
+		case Forge::ShaderDataType::IRfloat4:  return GL_FLOAT;
+		case Forge::ShaderDataType::IRvec3 :   return GL_FLOAT;
+		case Forge::ShaderDataType::IRvec4 :   return GL_FLOAT;
+		case Forge::ShaderDataType::IRint  :   return GL_INT;
+		case Forge::ShaderDataType::IRint2 :   return GL_INT;
+		case Forge::ShaderDataType::IRint3 :   return GL_INT;
+		case Forge::ShaderDataType::IRint4 :   return GL_INT;
+		case Forge::ShaderDataType::IRbool:    return GL_BOOL;
 		}
 	}
 

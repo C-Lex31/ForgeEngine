@@ -3,7 +3,7 @@
 
 #include "core/input/input.h"
 
-namespace Iris {
+namespace Forge {
 
 	class winInput:public input
 	{

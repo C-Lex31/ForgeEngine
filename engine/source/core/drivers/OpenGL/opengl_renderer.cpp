@@ -1,7 +1,7 @@
-#include "irpch.h"
+#include "frpch.h"
 #include "opengl_renderer.h"
 #include "glad/glad.h"
-namespace Iris {
+namespace Forge {
 
 	void OpenGLRendererAPI::SetClearColor(const glm::vec4& color)
 	{

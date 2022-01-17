@@ -2,7 +2,7 @@
 
 #include "renderer_api.h"
 
-namespace Iris {
+namespace Forge {
 	class render_commands
 	{
 	public:

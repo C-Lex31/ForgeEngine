@@ -1,9 +1,9 @@
 #pragma once
 
-#include "event.h"
+#include "event_register.h"
 #include <sstream>
 
-namespace Iris {
+namespace Forge {
 
 	class MouseMovedEvent : public Event
 	{

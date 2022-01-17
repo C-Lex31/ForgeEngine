@@ -1,7 +1,7 @@
-#include "irpch.h"
+#include "frpch.h"
 #include "layers.h"
 
-namespace Iris {
+namespace Forge {
 	Layer::Layer(const std::string& debugName)
 		: m_DebugName(debugName)
 	{

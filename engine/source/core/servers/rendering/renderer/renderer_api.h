@@ -2,7 +2,7 @@
 //API for the renderer
 #include "glm/glm.hpp"
 #include "vertexArray.h"
-namespace Iris {
+namespace Forge {
 
 	class renderer_api
 	{

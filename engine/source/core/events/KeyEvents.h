@@ -1,11 +1,11 @@
 #pragma once
 
-#include "event.h"
+#include "event_register.h"
 #include <sstream>
 
-namespace Iris {
+namespace Forge {
 
-	class IRIS_API KeyEvent : public Event
+	class FORGE_API KeyEvent : public Event
 	{
 	public:
 		int GetKeyCode() const { return m_KeyCode; }

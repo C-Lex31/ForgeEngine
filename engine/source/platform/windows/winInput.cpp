@@ -1,9 +1,9 @@
-#include "irpch.h"
+#include "frpch.h"
 #include "winInput.h"
-#include "core/launcher/IRlauncher.h"
+#include "core/main/main.h"
 #//include "GLFW/glfw3.h"
 
-namespace Iris {
+namespace Forge {
 	input* input::s_Instance = new winInput();
 	bool winInput::isKeyPressedImpl(int keycode) 
 	{

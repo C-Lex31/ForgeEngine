@@ -1,7 +1,7 @@
-#include "irpch.h"
+#include "frpch.h"
 #include "opengl_buffer.h"
 #include "glad/glad.h"
-namespace Iris {
+namespace Forge {
 
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
 	{

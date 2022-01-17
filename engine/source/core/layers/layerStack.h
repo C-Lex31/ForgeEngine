@@ -4,9 +4,9 @@
 #include "layers.h"
 #include <vector>
 
-namespace Iris {
+namespace Forge {
 
-	class IRIS_API LayerStack
+	class FORGE_API LayerStack
 	{
 	public:
 		LayerStack() = default;

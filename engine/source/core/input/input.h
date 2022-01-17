@@ -3,9 +3,9 @@
 
 #include "core/core.h"
 
-namespace Iris {
+namespace Forge {
 
-	class IRIS_API input
+	class FORGE_API input
 	{
 	public:
 		static bool isKeyPressed(int keycode) { return s_Instance->isKeyPressedImpl(keycode) ; }

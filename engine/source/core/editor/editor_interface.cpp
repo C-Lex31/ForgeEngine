@@ -1,11 +1,11 @@
-#include "irpch.h"
+#include "frpch.h"
 #include "editor_interface.h"
 //#include <imgui.h>
-#include "core/launcher/IRlauncher.h"
+#include "core/main/main.h"
 #include <backends/imgui_impl_glfw.h>
 #include <backends/imgui_impl_opengl3.h>
 #include <glad/glad.h>
-namespace Iris {
+namespace Forge {
 
 	UI_Layer::UI_Layer()
 		:Layer("Base_Layer")

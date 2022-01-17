@@ -9,8 +9,8 @@
 #include <functional>
 #include "core/log/log.h"
 
-#ifdef  IR_PLATFORM_WINDOWS
+#ifdef  FR_PLATFORM_WINDOWS
 
-#include"platform/pi_interface.h"
+#include "platform/pi_interface.h"
 #endif
 

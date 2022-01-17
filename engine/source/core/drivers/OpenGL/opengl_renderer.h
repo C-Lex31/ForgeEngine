@@ -2,7 +2,7 @@
 
 #include "core/servers/rendering/renderer/renderer_api.h"
 
-namespace Iris {
+namespace Forge {
 
 	class OpenGLRendererAPI:public renderer_api
 	{
