@@ -2,24 +2,25 @@
 
 #include "core/core.h"
 #include "core/events/event_register.h"
+#include "core/main/timestep.h"
 
 namespace Forge {
 
-	class FORGE_API Layer
+	class  Layer
 	{
 	public:
-		Layer(const std::string& name = "Layer");
+		Layer(const FString& name = "Layer");
 		virtual ~Layer() = default;
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnGUIRender() {}
 		virtual void OnEvent(Event& event) {}
 
-		const std::string& GetName() const { return m_DebugName; }
+		const FString& GetName() const { return m_DebugName; }
 	protected:
-		std::string m_DebugName;
+		FString m_DebugName;
 	};
 
 

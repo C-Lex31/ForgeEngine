@@ -5,12 +5,12 @@
 namespace Forge {
 
 
-	vertex_array* vertex_array::create()
+	FRef<vertex_array> vertex_array::create()
 	{
 		switch (renderer::get_api())
 		{
 		case renderer_api::api::None: return nullptr;
-		case renderer_api::api::OpenGL: return new OpenGLVertexArray();
+		case renderer_api::api::OpenGL: return std::make_shared <OpenGLVertexArray>();
 		}
 		return 0;
 	}

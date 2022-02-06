@@ -6,9 +6,11 @@ namespace Forge {
 
 	class OpenGLRendererAPI:public renderer_api
 	{
+		virtual void Init() override;
 		virtual void SetClearColor(const glm::vec4& color) override;
 		virtual void clear() override;
-	    virtual void drawElements(const std::shared_ptr<vertex_array>& va) override;
+	    virtual void drawElements(const FRef<vertex_array>& va) override;
+		virtual float GetTime();
 	};
 
 }

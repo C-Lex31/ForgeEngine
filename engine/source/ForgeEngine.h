@@ -5,18 +5,28 @@
 #include "core/layers/layers.h"
 #include "core/log/log.h"
 
+#include "core/main/timestep.h"
+
 #include "core/input/input.h"
 #include "core/input/keycodes.h"
 #include "core/input/mouse_button_codes.h"
 
 //#include "core/editor/editor_interface.h"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
 // Renderer Includes
+#include "core/servers/rendering/renderer/Renderer2D.h"
+#include "core/servers/rendering/renderer/Renderer3D.h"
 #include "core/servers/rendering/renderer/renderer_rd.h"
 #include "core/servers/rendering/renderer/renderer_api.h"
 #include "core/servers/rendering/renderer/graphics_context.h"
 #include "core/servers/rendering/renderer/buffers.h"
 #include "core/servers/rendering/renderer/vertexArray.h"
 #include "core/servers/rendering/renderer/shader.h"
+#include "core/servers/rendering/renderer/texture.h"
 
 #include "core/servers/camera/orthographic_camera2d.h"
-#include "core/client/entry_point.h"
+#include "core/servers/camera/Camera.h"
+
+
+#include "imgui.h"

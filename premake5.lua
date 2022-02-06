@@ -14,6 +14,7 @@ IncludeDir ={}
 IncludeDir["GLFW"] = "dependencies/Libraries/GLFW/include"
 IncludeDir["GLAD"] = "dependencies/Libraries/GLAD/include"
 IncludeDir["UI"]  =  "vendor/UI/central"
+IncludeDir["img_loader"]  =  "engine/helpers/img_loader"
 
 include "dependencies/Libraries/GLFW"
 include "dependencies/Libraries/GLAD"
@@ -37,7 +38,9 @@ project "engine"
 		 files
          {
           "%{prj.name}/source/**.h",
-          "%{prj.name}/source/**.cpp"
+          "%{prj.name}/source/**.cpp",
+		  "%{prj.name}/helpers/img_loader/**.h",
+		  "%{prj.name}/helpers/img_loader/**.cpp"
          }
 
 		 defines{
@@ -51,7 +54,8 @@ project "engine"
 			  "dependencies/Libraries/GLM",
 			  "%{IncludeDir.GLFW}",
 			   "%{IncludeDir.GLAD}",
-			   "%{IncludeDir.UI}"
+			   "%{IncludeDir.UI}",
+			    "%{IncludeDir.img_loader}"
 			  
 		 }
 

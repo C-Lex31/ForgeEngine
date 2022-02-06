@@ -2,7 +2,7 @@
 #include "layers.h"
 
 namespace Forge {
-	Layer::Layer(const std::string& debugName)
+	Layer::Layer(const FString& debugName)
 		: m_DebugName(debugName)
 	{
 	}

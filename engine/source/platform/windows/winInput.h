@@ -13,5 +13,8 @@ namespace Forge {
 		virtual std::pair<float, float> GetMousePosImpl() override;
 		virtual float GetMouseXImpl() override;
 		virtual float GetMouseYImpl() override;
+		virtual void SetCursorPosImpl() override;
+		virtual void HideCursorImpl() override;
+		virtual void ShowCursorImpl() override;
 	};
 }

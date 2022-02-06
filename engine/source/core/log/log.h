@@ -1,8 +1,5 @@
 #pragma once
 
-
-
-#include <memory>
 #include "core/core.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
@@ -12,11 +9,11 @@ namespace Forge {
 	{
 	public:
 		static void Init();
-		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return s_coreLogger; }
-		inline static std::shared_ptr<spdlog::logger>& GetClientLogger() { return s_clientLogger; }
+		inline static FRef<spdlog::logger>& GetCoreLogger() { return s_coreLogger; }
+		inline static FRef<spdlog::logger>& GetClientLogger() { return s_clientLogger; }
 	private:
-		static std::shared_ptr<spdlog::logger>s_coreLogger;
-		static std::shared_ptr<spdlog::logger>s_clientLogger;
+		static FRef<spdlog::logger>s_coreLogger;
+		static FRef<spdlog::logger>s_clientLogger;
 
 	};
 
@@ -27,7 +24,7 @@ namespace Forge {
 #define FR_CORE_INFO(...)   ::Forge::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define FR_CORE_WARN(...)   ::Forge::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define FR_CORE_ERROR(...)  ::Forge::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define FR_CORE_FATAL(...)  ::Forge::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define FR_CORE_FATAL(...)  ::Forge::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 
 #define FR_TRACE(...)  ::Forge::Log::GetClientLogger()->trace(__VA_ARGS__)

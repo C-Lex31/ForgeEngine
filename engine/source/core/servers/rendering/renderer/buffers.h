@@ -4,23 +4,23 @@ namespace Forge {
 
 	enum class ShaderDataType
 	{
-		None=0,IRfloat,IRfloat2,IRfloat3,IRfloat4,IRvec3,IRvec4,IRint,IRint2,IRint3,IRint4,IRbool
+		None=0,FRfloat,FRfloat2,FRfloat3,FRfloat4,FRvec3,FRvec4,FRint,FRint2,FRint3,FRint4,FRbool
 	};
 
 	static uint32_t sdtSize(ShaderDataType type)
 	{
 		switch (type)
 		{
-			case ShaderDataType::IRfloat :   return 4;
-			case ShaderDataType::IRfloat2:   return 4*2;
-			case ShaderDataType::IRfloat3:   return 4*3;
-			case ShaderDataType::IRfloat4:   return 4*4;
-			case ShaderDataType::IRvec3  :   return 4*3*3;
-			case ShaderDataType::IRvec4  :   return 4*4*4;
-			case ShaderDataType::IRint   :   return 4;
-			case ShaderDataType::IRint2  :   return 4*2;
-			case ShaderDataType::IRint3  :   return 4*3;
-			case ShaderDataType::IRint4  :   return 4*4;
+			case ShaderDataType::FRfloat :   return 4;
+			case ShaderDataType::FRfloat2:   return 4*2;
+			case ShaderDataType::FRfloat3:   return 4*3;
+			case ShaderDataType::FRfloat4:   return 4*4;
+			case ShaderDataType::FRvec3  :   return 4*3*3;
+			case ShaderDataType::FRvec4  :   return 4*4*4;
+			case ShaderDataType::FRint   :   return 4;
+			case ShaderDataType::FRint2  :   return 4*2;
+			case ShaderDataType::FRint3  :   return 4*3;
+			case ShaderDataType::FRint4  :   return 4*4;
 
 		}
 
@@ -42,17 +42,17 @@ namespace Forge {
 		{
 			switch (m_type)
 			{
-			case ShaderDataType::IRfloat:   return 1;
-			case ShaderDataType::IRfloat2:  return 2;
-			case ShaderDataType::IRfloat3:  return 3;
-			case ShaderDataType::IRfloat4:  return 4;
-			case ShaderDataType::IRvec3:    return 3; // 3* float3
-			case ShaderDataType::IRvec4:    return 4; // 4* float4
-			case ShaderDataType::IRint:     return 1;
-			case ShaderDataType::IRint2:    return 2;
-			case ShaderDataType::IRint3:    return 3;
-			case ShaderDataType::IRint4:    return 4;
-			case ShaderDataType::IRbool:    return 1;
+			case ShaderDataType::FRfloat:   return 1;
+			case ShaderDataType::FRfloat2:  return 2;
+			case ShaderDataType::FRfloat3:  return 3;
+			case ShaderDataType::FRfloat4:  return 4;
+			case ShaderDataType::FRvec3:    return 3; // 3* float3
+			case ShaderDataType::FRvec4:    return 4; // 4* float4
+			case ShaderDataType::FRint:     return 1;
+			case ShaderDataType::FRint2:    return 2;
+			case ShaderDataType::FRint3:    return 3;
+			case ShaderDataType::FRint4:    return 4;
+			case ShaderDataType::FRbool:    return 1;
 			}
 			return 0;
 		}

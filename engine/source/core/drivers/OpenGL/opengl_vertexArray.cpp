@@ -7,17 +7,17 @@ namespace Forge {
 	{
 		switch (type)
 		{
-		case Forge::ShaderDataType::IRfloat :  return GL_FLOAT;
-		case Forge::ShaderDataType::IRfloat2:  return GL_FLOAT;
-		case Forge::ShaderDataType::IRfloat3:  return GL_FLOAT;
-		case Forge::ShaderDataType::IRfloat4:  return GL_FLOAT;
-		case Forge::ShaderDataType::IRvec3 :   return GL_FLOAT;
-		case Forge::ShaderDataType::IRvec4 :   return GL_FLOAT;
-		case Forge::ShaderDataType::IRint  :   return GL_INT;
-		case Forge::ShaderDataType::IRint2 :   return GL_INT;
-		case Forge::ShaderDataType::IRint3 :   return GL_INT;
-		case Forge::ShaderDataType::IRint4 :   return GL_INT;
-		case Forge::ShaderDataType::IRbool:    return GL_BOOL;
+		case Forge::ShaderDataType::FRfloat :  return GL_FLOAT;
+		case Forge::ShaderDataType::FRfloat2:  return GL_FLOAT;
+		case Forge::ShaderDataType::FRfloat3:  return GL_FLOAT;
+		case Forge::ShaderDataType::FRfloat4:  return GL_FLOAT;
+		case Forge::ShaderDataType::FRvec3 :   return GL_FLOAT;
+		case Forge::ShaderDataType::FRvec4 :   return GL_FLOAT;
+		case Forge::ShaderDataType::FRint  :   return GL_INT;
+		case Forge::ShaderDataType::FRint2 :   return GL_INT;
+		case Forge::ShaderDataType::FRint3 :   return GL_INT;
+		case Forge::ShaderDataType::FRint4 :   return GL_INT;
+		case Forge::ShaderDataType::FRbool:    return GL_BOOL;
 		}
 	}
 
@@ -36,7 +36,7 @@ namespace Forge {
 		 glBindVertexArray(0);
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<vertex_buffer>& vb) 
+	void OpenGLVertexArray::AddVertexBuffer(const FRef<vertex_buffer>& vb) 
 	{
 		glBindVertexArray(m_rendererID);
 		vb->bind();
@@ -51,7 +51,7 @@ namespace Forge {
 		}
 		m_vertexBuffers.push_back(vb);
 	}
-	void OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<index_buffer>& ib)
+	void OpenGLVertexArray::SetIndexBuffer(const FRef<index_buffer>& ib)
 	{
 
 		glBindVertexArray(m_rendererID);

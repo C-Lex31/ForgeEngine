@@ -1,7 +1,7 @@
 #include "frpch.h"
 #include "winInput.h"
 #include "core/main/main.h"
-#//include "GLFW/glfw3.h"
+
 
 namespace Forge {
 	input* input::s_Instance = new winInput();
@@ -15,7 +15,7 @@ namespace Forge {
 	bool winInput::isMouseButtonPressedImpl(int button)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		auto state = glfwGetKey(window, button);
+		auto state = glfwGetMouseButton(window, button);
 		return state == GLFW_PRESS ;
 	}
 	std::pair<float, float> winInput::GetMousePosImpl()
@@ -29,13 +29,30 @@ namespace Forge {
 	float winInput::GetMouseXImpl()
 	{
 		auto [x,y] = GetMousePosImpl();
-	
 		return (float)x;
 	}
 	float winInput::GetMouseYImpl()
 	{
 		auto [x,y] = GetMousePosImpl();
 		return (float)y;
+	}
+	
+	void winInput::SetCursorPosImpl()
+	{
+		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+		glfwSetCursorPos(window, 1366 / 2, 705 / 2);
+	}
+	void winInput::HideCursorImpl()
+	{
+	
+		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+	}
+	void winInput::ShowCursorImpl()
+	{
+		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	}
 }
 

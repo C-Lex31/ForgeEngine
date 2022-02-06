@@ -16,8 +16,8 @@ namespace Forge {
 	void UI_Layer::OnAttach()
 	{
 		IMGUI_CHECKVERSION();
-		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO(); (void)io;
+		ForgeUI::CreateContext();									//ImGui----->ForgeUI
+		FListenIO& io = ForgeUI::GetIO(); (void)io;					//ImGuiIO--->FListenIO
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
@@ -27,10 +27,10 @@ namespace Forge {
 
 		// Setup Gui style
 		//ImGui::StyleColorsDark();
-		ImGui::StyleColorsClassic();
+		ForgeUI::StyleColorsClassic();
 
 		// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
-		ImGuiStyle& style = ImGui::GetStyle();
+		FStyle& style = ForgeUI::GetStyle();						//ImGuiStyle--->FStyle
 		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 		{
 			style.WindowRounding = 0.0f;
@@ -54,22 +54,22 @@ namespace Forge {
 	{
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
+		ForgeUI::NewFrame();
 	}
 	void UI_Layer::End()
 	{
-		ImGuiIO& io = ImGui::GetIO();
+		FListenIO& io = ForgeUI::GetIO();
 		Application& is = Application::Get();
-		io.DisplaySize = ImVec2((float)is.GetWindow().GetWidth(), (float)is.GetWindow().GetHeight());
+		io.DisplaySize = FVec2((float)is.GetWindow().GetWidth(), (float)is.GetWindow().GetHeight());
 
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		ForgeUI::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ForgeUI::GetDrawData());
 
 		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 		{
 			GLFWwindow* backup_current_context = glfwGetCurrentContext();
-			ImGui::UpdatePlatformWindows();
-			ImGui::RenderPlatformWindowsDefault();
+			ForgeUI::UpdatePlatformWindows();
+			ForgeUI::RenderPlatformWindowsDefault();
 			glfwMakeContextCurrent(backup_current_context);
 		}
 
@@ -79,7 +79,7 @@ namespace Forge {
 	void UI_Layer::OnGUIRender()
 	{
 		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
+		ForgeUI::ShowDemoWindow(&show);
 		
 	}
 	

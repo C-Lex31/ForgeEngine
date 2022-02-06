@@ -4,7 +4,7 @@
 #include "core/events/event_register.h"
 #include "core/core.h"
 #include "GLFW/glfw3.h"
-//#include "glad/glad.h"
+
 
 
 
@@ -16,7 +16,7 @@ namespace Forge {
 		uint32_t Width;
 		uint32_t Height;
 
-		WindowProps(const std::string& title = "Iris Engine",
+		WindowProps(const FString& title = "Forge Engine",
 			uint32_t width = 1366,
 			uint32_t height = 705)
 			: Title(title), Width(width), Height(height)
@@ -41,6 +41,7 @@ namespace Forge {
 		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
+		virtual void EnableDepthTest() const = 0;
 
 		virtual void* GetNativeWindow() const = 0;// It returns a void pointer as it doesnt always have to be a glfw window . In future if I decide to use any other Graphics library..it could return HWIN ..etc
 

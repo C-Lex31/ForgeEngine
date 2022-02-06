@@ -3,6 +3,7 @@
 #include "core/events/KeyEvents.h"
 #include "core/events/MouseEvents.h"
 #include "windows.h"
+#include <glad/glad.h>
 
 
 
@@ -146,6 +147,11 @@ namespace Forge {
 			glfwSwapInterval(0);
 
 		m_Data.VSync = enabled;
+	}
+
+	void MsWin::EnableDepthTest() const
+	{
+		glEnable(GL_DEPTH_TEST);
 	}
 
 	bool MsWin::IsVSync() const
