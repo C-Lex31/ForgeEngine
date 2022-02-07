@@ -10,6 +10,8 @@ namespace Forge {
 	{
 		FRef<vertex_array> PyroVA;
 		FRef<vertex_array> CubeVA;
+		FRef<vertex_array> PlaneVA;
+		FRef<shader> PlaneShader;
 		FRef<shader> CubeShader;
 		FRef<shader> PyroTexShader;
 	};
@@ -17,34 +19,89 @@ namespace Forge {
 	void Renderer3D::Init()
 	{
 		rdc = new RenderDataCache();
-		rdc->PyroVA = vertex_array::create();
 
+		rdc->PlaneVA = vertex_array::create();
+		float PlaneVert[] = {
+		//	------VERTICES---  ---TEXCOORD   ----NORMALS---
+			-0.5f,0.0f, 0.5f,	0.0f,0.0f,   0.0f,1.0f,0.0f,
+			-0.5f,0.0f,-0.5f,	0.0f,1.0f,	 0.0f,1.0f,0.0f,
+			 0.5f,0.0f,-0.5f,	1.0f,1.0f,   0.0f,1.0f,0.0f,
+			 0.5f,0.0f, 0.5f,	1.0f,0.0f,   0.0f,1.0f,0.0f
+		};
+		FRef<vertex_buffer>PlaneBuffer;
+		PlaneBuffer.reset(vertex_buffer::create(PlaneVert, sizeof(PlaneVert)));
+		buffer_layout PlaneLayout = {
+			{"a_Pos" ,ShaderDataType::FRfloat3},
+			{"a_TexCoord",ShaderDataType::FRfloat2},
+			{"a_Normal",ShaderDataType::FRfloat3}
+		};
+		PlaneBuffer->SetLayout(PlaneLayout);
+		rdc->PlaneVA->AddVertexBuffer(PlaneBuffer);
+
+		uint32_t PlaneIndices[] = {
+			0,1,2,
+			0,2,3
+		};
+
+		FRef<index_buffer>PlaneIB;
+		PlaneIB.reset(index_buffer::create(PlaneIndices, sizeof(PlaneIndices) / sizeof(uint32_t)));
+		rdc->PlaneVA->SetIndexBuffer(PlaneIB);
+
+		rdc->PyroVA = vertex_array::create();
 		float vertices[] = {
-			//-----VERTICES---      ----TEXCOORD-----
-			-0.5f, 0.0f, 0.5f,       0.0f,0.0f,
-			-0.5f, 0.0f, -0.5f,      5.0f,0.0f,
-			0.5f,  0.0f, -0.5f,      0.0f,0.0f,
-			0.5f ,0.0f, 0.5f,    	 5.0f,0.0f,
-			0.0f,0.8f,0.0f ,     	 2.5f,5.0f
+			//-----VERTICES---      ----TEXCOORD-----  
+		/*	-0.5f, 0.0f,  0.5f,      0.0f,0.0f,
+			-0.5f, 0.0f, -0.5f,      5.0f,0.0f,		   
+			0.5f,  0.0f, -0.5f,      0.0f,0.0f,		   
+			0.5f , 0.0f,  0.5f,    	 5.0f,0.0f,		   
+			0.0f , 0.8f,  0.0f,      2.5f,5.0f,		*/   
+			//     COORDINATES        /    TexCoord   /        NORMALS       //
+			-0.5f, 0.0f,  0.5f,    	 0.0f, 0.0f,      0.0f, -1.0f, 0.0f, // Bottom side
+			-0.5f, 0.0f, -0.5f,   	 0.0f, 5.0f,      0.0f, -1.0f, 0.0f, // Bottom side
+			 0.5f, 0.0f, -0.5f,   	 5.0f, 5.0f,      0.0f, -1.0f, 0.0f, // Bottom side
+			 0.5f, 0.0f,  0.5f,   	 5.0f, 0.0f,      0.0f, -1.0f, 0.0f, // Bottom side
+
+			-0.5f, 0.0f,  0.5f,    	 0.0f, 0.0f,     -0.8f, 0.5f,  0.0f, // Left Side
+			-0.5f, 0.0f, -0.5f,   	 5.0f, 0.0f,     -0.8f, 0.5f,  0.0f, // Left Side
+			 0.0f, 0.8f,  0.0f,   	 2.5f, 5.0f,     -0.8f, 0.5f,  0.0f, // Left Side
+
+			-0.5f, 0.0f, -0.5f,   	 5.0f, 0.0f,      0.0f, 0.5f, -0.8f, // Non-facing side
+			 0.5f, 0.0f, -0.5f,   	 0.0f, 0.0f,      0.0f, 0.5f, -0.8f, // Non-facing side
+			 0.0f, 0.8f,  0.0f,   	 2.5f, 5.0f,      0.0f, 0.5f, -0.8f, // Non-facing side
+
+			 0.5f, 0.0f, -0.5f,   	 0.0f, 0.0f,      0.8f, 0.5f,  0.0f, // Right side
+			 0.5f, 0.0f,  0.5f,   	 5.0f, 0.0f,      0.8f, 0.5f,  0.0f, // Right side
+			 0.0f, 0.8f,  0.0f,   	 2.5f, 5.0f,      0.8f, 0.5f,  0.0f, // Right side
+
+			 0.5f, 0.0f,  0.5f,   	 5.0f, 0.0f,      0.0f, 0.5f,  0.8f, // Facing side
+			-0.5f, 0.0f,  0.5f,    	 0.0f, 0.0f,      0.0f, 0.5f,  0.8f, // Facing side
+			 0.0f, 0.8f,  0.0f,   	 2.5f, 5.0f,      0.0f, 0.5f,  0.8f  // Facing side
 		};
 
 		FRef<vertex_buffer>m_vertexBuffer;
 		m_vertexBuffer.reset(vertex_buffer::create(vertices, sizeof(vertices)));
 		buffer_layout layout = {
 			{"aPos" ,ShaderDataType::FRfloat3},
-			{"a_TexCoord",ShaderDataType::FRfloat2}
+			{"a_TexCoord",ShaderDataType::FRfloat2},
+			{"a_Normal",ShaderDataType::FRfloat3}
 		};
 
 		m_vertexBuffer->SetLayout(layout);
 		rdc->PyroVA->AddVertexBuffer(m_vertexBuffer);
 
 		uint32_t indices[] = {
-			0,1,2,
+		/*	0,1,2,
 			0,2,3,
 			0,1,4,
 			1,2,4,
 			2,3,4,
-			3,0,4
+			3,0,4*/
+		0, 1, 2, // Bottom side
+		0, 2, 3, // Bottom side
+		4, 6, 5, // Left side
+		7, 9, 8, // Non-facing side
+		10, 12, 11, // Right side
+		13, 15, 14 // Facing side
 		};
 		FRef<index_buffer>m_indexBuffer;
 		m_indexBuffer.reset(index_buffer::create(indices, sizeof(indices) / sizeof(uint32_t)));
@@ -62,7 +119,14 @@ namespace Forge {
 			 0.5f, -0.5f, -0.5f,	//1.0,0.0,0.0,1.0,
 			 0.5f,  0.5f, -0.5f,	//1.0,0.0,0.0,1.0,
 			-0.5f,  0.5f, -0.5f,	//1.0,0.0,0.0,1.0
-	
+	/*-0.1f, -0.1f,  0.1f,
+	-0.1f, -0.1f, -0.1f,
+	 0.1f, -0.1f, -0.1f,
+	 0.1f, -0.1f,  0.1f,
+	-0.1f,  0.1f,  0.1f,
+	-0.1f,  0.1f, -0.1f,
+	 0.1f,  0.1f, -0.1f,
+	 0.1f,  0.1f,  0.1f*/
 
 
 		};
@@ -94,6 +158,18 @@ namespace Forge {
 			// top
 			3, 2, 6,
 			6, 7, 3
+		/*	0, 1, 2,
+	0, 2, 3,
+	0, 4, 7,
+	0, 7, 3,
+	3, 7, 6,
+	3, 6, 2,
+	2, 6, 5,
+	2, 5, 1,
+	1, 5, 4,
+	1, 4, 0,
+	4, 5, 6,
+	4, 6, 7*/
 
 		};
 		FRef<index_buffer> CubeIB;
@@ -102,7 +178,7 @@ namespace Forge {
 
 		rdc->CubeShader = shader::create("assets/shaders/CubeShader.fsf");
 		rdc->PyroTexShader = shader::create("assets/shaders/PyramidTextureShader.fsf");
-
+		rdc->PlaneShader = shader::create("assets/shaders/PlaneShader.fsf");
 	}
 
 	void Renderer3D::Shutdown()
@@ -117,21 +193,41 @@ namespace Forge {
 		rdc->PyroTexShader->UploadUniformMat4("u_ViewProjectionMatrix", cam.GetViewProjectionMatrix());
 		rdc->PyroTexShader->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
 		rdc->PyroTexShader->UploadUniformInt("u_Texture", 0);
-	
+		rdc->PyroTexShader->UploadUniformFloat3("u_CamPos", cam.GetCamPos());
 		rdc->CubeShader->bind();
 		rdc->CubeShader->UploadUniformMat4("u_ViewProjectionMatrix", cam.GetViewProjectionMatrix());
 		rdc->CubeShader->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
+
+		rdc->PlaneShader->bind();
+		rdc->PlaneShader->UploadUniformMat4("u_ViewProjectionMatrix", cam.GetViewProjectionMatrix());
+		rdc->PlaneShader->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
+		rdc->PlaneShader->UploadUniformInt("u_Texture", 0);
+		rdc->PlaneShader->UploadUniformInt("u_SpecMap", 1);
 	}
 
 	void Renderer3D::EndScene()
 	{
 	}
-
+	void Renderer3D::DrawPlane(const glm::vec3& position, const glm::vec3& size, const FRef<Texture2D>& texture, const FRef<Texture2D>& SpecularMap, const glm::vec4& color,const glm::vec3& LightPos, const glm::mat4& model)
+	{
+		rdc->PlaneShader->bind();
+		rdc->PlaneShader->UploadUniformFloat4("u_Color", color);
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) */*rotation*/
+			glm::scale(glm::mat4(1.0f), { size.x,size.y,size.z });
+		rdc->PlaneShader->UploadUniformMat4("u_Transform", transform);
+		rdc->PlaneShader->UploadUniformMat4("model", model);
+		rdc->PlaneShader->UploadUniformFloat3("u_LightPos", LightPos);
+		
+		texture->bind(0);
+		SpecularMap->bind(1);
+		rdc->PlaneVA->bind();
+		render_commands::drawElements(rdc->PlaneVA);
+	}
 	void Renderer3D::DrawCube(const glm::vec3& position, const glm::vec3& size, const glm::vec4& color, const glm::mat4& model)
 	{
 		rdc->CubeShader->bind();
 		rdc->CubeShader->UploadUniformFloat4("u_Color", color);
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) */*rotation*/
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(model, glm::radians(1.0f), glm::vec3(0.0f, 0.0f, 1.0f)) *
 			glm::scale(glm::mat4(1.0f), { size.x,size.y,size.z });
 		rdc->CubeShader->UploadUniformMat4("u_Transform", transform);
 		rdc->CubeShader->UploadUniformMat4("model", model);
@@ -140,13 +236,15 @@ namespace Forge {
 		render_commands::drawElements(rdc->CubeVA);
 	}
 
-	void Renderer3D::DrawPyramid(const glm::vec3& position, const glm::vec3& size, const FRef<Texture2D>& texture, const glm::mat4& model)
+	void Renderer3D::DrawPyramid(const glm::vec3& position, const glm::vec3& size, const FRef<Texture2D>& texture, const glm::vec4 LightColor , const glm::vec3& LightPos, const glm::mat4& model)
 	{
 		rdc->PyroTexShader->bind();
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) */*rotation*/
 			glm::scale(glm::mat4(1.0f), { size.x,size.y,size.z });
 		rdc->PyroTexShader->UploadUniformMat4("u_Transform", transform);
 		rdc->PyroTexShader->UploadUniformMat4("model", model);
+		rdc->PyroTexShader->UploadUniformFloat4("u_Color", LightColor);
+		rdc->PyroTexShader->UploadUniformFloat3("u_LightPos", LightPos);
 		texture->bind();
 		rdc->PyroVA->bind();
 		render_commands::drawElements(rdc->PyroVA);

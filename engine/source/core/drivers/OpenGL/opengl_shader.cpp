@@ -165,6 +165,11 @@ namespace Forge {
 		GLint uniformLocation = glGetUniformLocation(m_rendererID, name.c_str());
 		glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
+	void OpenGLShader::UploadUniformFloat3(const std::string& name, const glm::vec3& value)const
+	{
+		GLint Location = glGetUniformLocation(m_rendererID, name.c_str());
+		glUniform3f(Location, value.x, value.y, value.z);
+	}
 	void OpenGLShader::UploadUniformFloat4(const std::string& name, const glm::vec4& value)const
 	{
 		GLint Location = glGetUniformLocation(m_rendererID, name.c_str());

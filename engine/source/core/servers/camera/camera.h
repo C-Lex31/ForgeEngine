@@ -12,7 +12,7 @@ namespace Forge {
 	public:
 		Camera(float width, float height, glm::vec3 position);
 
-	//	const glm::vec3& GetCamPos() { return m_Position; }
+		const glm::vec3& GetCamPos() const { return Position; }
 	//	void SetCamPos(const glm::vec3& position) { m_Position = position; RecalculateViewMatrix(); }
 
 	//	const float  GetCamRot() { return m_Rotation; }

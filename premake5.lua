@@ -90,7 +90,61 @@ project "engine"
 					buildoptions "/MD"
 					optimize "on"
 
-		
+project "Anvil"
+
+	location "editor"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("binaries/" .. outputdir .. "/%{prj.name}")
+	objdir ("obj/" .. outputdir .. "/%{prj.name}")       
+
+	files
+    {
+    "%{prj.name}/Anvil/source/**.h",
+    "%{prj.name}/Anvil/source/**.cpp",
+    }
+
+	includedirs
+	{
+		"vendor/thirdparty/LOG/include",
+		"dependencies/Libraries/GLM",
+		"vendor/UI/central",
+		"engine/source",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}"
+			 
+	}
+
+	links
+	{
+		"engine",
+		"GLFW",
+		"GLAD"
+			
+	}
+
+	filter "system:windows"
+			
+	staticruntime "on"
+	systemversion "latest"
+
+	defines
+	{
+		"FR_PLATFORM_WINDOWS"
+	}
+
+		filter "configurations:Debug"
+				defines "FR_DEBUG"
+			    buildoptions "/MDd"
+				symbols "on"
+
+	filter "configurations:Release"
+			defines "FR_RELEASE"
+					
+			optimize "on"
 
 			
 

@@ -14,6 +14,7 @@ namespace Forge {
 		virtual void unbind() const=0;
 
 		virtual void UploadUniformMat4(const FString& name, const glm::mat4& matrix) const= 0;
+		virtual void UploadUniformFloat3(const FString& name, const glm::vec3& value) const = 0;
 		virtual void UploadUniformFloat4(const FString& name, const glm::vec4& value) const= 0;
 		virtual void UploadUniformInt(const FString& name, int value) const = 0;
 		static FRef<shader> create(const FString& filepath);
