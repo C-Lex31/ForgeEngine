@@ -15,7 +15,7 @@ namespace Forge {
 	class Texture2D:public Texture
 	{
 	public:
-		static FRef<Texture2D> create(const FString& path , const FString& flag="");
+		static FRef<Texture2D> create(const FString& path ,  const FString& flag="");
 
 	};
 }

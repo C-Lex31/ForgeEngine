@@ -5,7 +5,7 @@ namespace Forge {
 	class OpenGLTexture2D : public Texture2D
 	{
 	public:
-		OpenGLTexture2D(const FString& path, const FString& flag );
+		OpenGLTexture2D(const FString& path, const FString& flag ="");
 		virtual ~OpenGLTexture2D();
 		virtual uint32_t GetTexWidth() const override { return m_TexWidth; }
 		virtual uint32_t GetTexHeight() const override { return m_TexHeight; }

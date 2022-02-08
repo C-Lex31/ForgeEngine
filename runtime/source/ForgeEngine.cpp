@@ -69,7 +69,7 @@ public:
 	Sandbox()
 	{
 		//PushLayer(new Engine_Layer());
-		PushLayer(new Forge3D());
+		PushLayer(new Forge2D());
 	}
 	~Sandbox()
 	{

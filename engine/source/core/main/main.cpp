@@ -13,7 +13,7 @@ namespace Forge {
 		m_Window = std::unique_ptr<Window>(Window::Create());//explicit contructor?
 		m_Window->SetEventCallback(FR_BIND_EVENT_FN(OnEvent));
 		m_Window->SetVSync(true);
-		m_Window->EnableDepthTest();
+	//	m_Window->EnableDepthTest();
 		renderer::Init();
 		 m_guiLayer = new UI_Layer();
 		PushOverlay(m_guiLayer);	

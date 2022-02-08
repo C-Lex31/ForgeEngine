@@ -1,6 +1,7 @@
 #pragma once
 #include "core/servers/camera/orthographic_camera2d.h"
 #include "render_commands.h"
+#include "texture.h"
 namespace Forge {
 
 	class Renderer2D
@@ -14,6 +15,8 @@ namespace Forge {
 
 		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
 		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
+		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const FRef<Texture2D>& texture, const FRef<Texture2D>& texture2);
+		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const FRef<Texture2D>& texture, const FRef<Texture2D>& texture2);
 	};
 
 }

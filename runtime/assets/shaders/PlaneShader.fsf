@@ -39,7 +39,7 @@ vec4 PointLight()
 	float intensity = 1.0f/(a* dist * dist + b * dist + 1.0f);
 	float ambience =0.3f;
 	vec3 normal = normalize(v_Normal);
-	vec3 LightDir =normalize(LightVec);
+	vec3 LightDir =normalize(LightVec); 
 
 	float SpecularLight = 0.50f;
 	vec3 ViewDir = normalize(u_CamPos - v_crntPos);
@@ -57,13 +57,13 @@ vec4 SpecularLight()
 	vec3 normal = normalize(v_Normal);
 	vec3 LightDir =normalize(LightVec);
 
-	float SpecularLight = 0.70f;
+	float SpecularLight = 0.50f;
 	vec3 ViewDir = normalize(u_CamPos - v_crntPos);
 	vec3 ReflectionDir =  reflect(-LightDir , normal);
 	float s_amt = pow(max(dot(ViewDir,ReflectionDir),0.0f) , 16.0f);
 	float specularity = s_amt * SpecularLight;
 	float diffusion = max(dot(normal , LightDir) , 0.0f);
-	return(texture(u_Texture , v_TexCoord) * (diffusion+ambience)+texture(u_SpecMap , v_TexCoord).r * specularity) * u_Color;
+	return (texture(u_Texture,v_TexCoord) * u_Color);
 }
 
 vec4 SpotLight()
