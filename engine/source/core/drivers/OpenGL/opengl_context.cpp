@@ -12,9 +12,9 @@ namespace Forge {
 		glfwMakeContextCurrent(m_windowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 
-		FR_CORE_INFO("Vendor  :{0}", glGetString(GL_VENDOR));
-		FR_CORE_INFO("Renderer:{0}", glGetString(GL_RENDERER));
-		FR_CORE_INFO("Version :{0}", glGetString(GL_VERSION));
+		FR_CORE_WARN("Vendor  :{0}", glGetString(GL_VENDOR));
+		FR_CORE_WARN("Renderer:{0}", glGetString(GL_RENDERER));
+		FR_CORE_WARN("Version :{0}", glGetString(GL_VERSION));
 	}
 	void opengl_context::swap_buffers()
 	{

@@ -9,9 +9,9 @@ Forge2D::Forge2D()
 
 void Forge2D::OnAttach()
 {
-	m_CheckerboardTexture = Forge::Texture2D::create("assets/textures/Checkerboard.png");
-	m_Logo = Forge::Texture2D::create("assets/textures/ChernoLogo.png");
-
+	m_CheckerboardTexture = Forge::Texture2D::create("assets/textures/Checkerboard.png",0);
+	m_Logo = Forge::Texture2D::create("assets/textures/AwesomeFace.png",1);
+	
 }
 
 void Forge2D::OnDetach()
@@ -28,9 +28,9 @@ void Forge2D::OnUpdate(Forge::Timestep ts)
 
 
 	Forge::Renderer2D::BeginScene(m_Cam2d);
-	//Forge::Renderer2D::DrawQuad({ 0.0f,0.0f }, { 1.0f,1.0f }, QuadColor1);
-	//Forge::Renderer2D::DrawQuad({ 1.0f,0.0f }, { 0.8f,0.5f }, QuadColor2);
-//	Forge::Renderer2D::DrawQuad({ 0.0f,0.0f }, { 1.0f,1.0f }, m_Logo);
+	Forge::Renderer2D::DrawQuad({ 0.0f,0.0f }, { 1.0f,1.0f }, QuadColor1);
+	Forge::Renderer2D::DrawQuad({ 1.0f,0.0f }, { 0.8f,0.5f }, QuadColor2);
+	//Forge::Renderer2D::DrawQuad({ 0.0f,0.0f }, { 1.0f,1.0f }, m_Logo);
 
 	Forge::Renderer2D::DrawQuad({ 0.0f,0.0f }, { 2.0f,2.0f }, m_CheckerboardTexture , m_Logo);
 	

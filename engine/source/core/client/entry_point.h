@@ -7,7 +7,7 @@
 int main(int argc, char** argv)
 {
 	Forge::Log::Init();
-	FR_CORE_WARN("Initialized Log");
+	FR_CORE_INFO("Initialized Log");
 	FR_TRACE("READY");
 
 	Forge::Application* app = Forge::CreateApplication();

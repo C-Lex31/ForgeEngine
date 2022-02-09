@@ -9,9 +9,9 @@ Forge3D::Forge3D()
 void Forge3D::OnAttach()
 {
 	//m_Texture2D = Forge::Texture2D::create("assets/textures/brick.png");
-	m_PlankTexture= Forge::Texture2D::create("assets/textures/Checkerboard.png");
+	m_PlankTexture= Forge::Texture2D::create("assets/textures/planks.png",0);
 //	m_PlankTexture2= Forge::Texture2D::create("assets/textures/planks.png", 0, "");
-	m_PlankSpecular = Forge::Texture2D::create("assets/textures/ChernoLogo.png");
+	m_PlankSpecular = Forge::Texture2D::create("assets/maps/PlanksSpec.png",1);
 }
 
 void Forge3D::OnDetach()

@@ -26,7 +26,7 @@ namespace Forge {
 		FRef<vertex_buffer>squareVB;
 		squareVB.reset(vertex_buffer::create(SQvertices, sizeof(SQvertices)));
 		buffer_layout SQ_layout = {
-			{"a_position" ,ShaderDataType::FRfloat3},
+			{"a_Position" ,ShaderDataType::FRfloat3},
 			{"a_TexCoord" ,ShaderDataType::FRfloat2}
 		};
 
@@ -42,7 +42,8 @@ namespace Forge {
 
 		rdc->QuadShader = shader::create("assets/shaders/QuadShader.fsf");
 		rdc->TextureShader = shader::create("assets/shaders/TextureShader.fsf");
-	
+	//	rdc->TextureShader->UploadUniformInt("u_Texture", 0);
+		//rdc->TextureShader->UploadUniformInt("u_Texture2", 1);
 	}
 
 	void Renderer2D::Shutdown()
@@ -58,7 +59,9 @@ namespace Forge {
 
 		rdc->TextureShader->bind();
 		rdc->TextureShader->UploadUniformMat4("u_ViewProjectionMatrix", cam2d.GetViewProjectionMatrix());
-		rdc->TextureShader->UploadUniformInt("u_Texture", 0);
+	rdc->TextureShader->UploadUniformInt("u_Texture", 0);
+	rdc->TextureShader->UploadUniformInt("u_Texture2", 1);
+	
 	}
 
 	void Renderer2D::EndScene()
@@ -89,8 +92,9 @@ namespace Forge {
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) */*rotation*/
 			glm::scale(glm::mat4(1.0f), { size.x,size.y,1.0f });
 		rdc->QuadShader->UploadUniformMat4("u_Transform", transform);
-		texture->bind(0);
-		texture1->bind(0);
+		//rdc->TextureShader->UploadUniformInt("u_Texture", 0);
+		texture->bind();
+		texture1->bind(1);
 		
 		rdc->QuadVA->bind();
 		render_commands::drawElements(rdc->QuadVA);

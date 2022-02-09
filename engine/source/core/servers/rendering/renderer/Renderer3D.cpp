@@ -202,7 +202,7 @@ namespace Forge {
 		rdc->PlaneShader->UploadUniformMat4("u_ViewProjectionMatrix", cam.GetViewProjectionMatrix());
 		rdc->PlaneShader->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
 		rdc->PlaneShader->UploadUniformInt("u_Texture",0);
-		//rdc->PlaneShader->UploadUniformInt("u_SpecMap", 0);
+		rdc->PlaneShader->UploadUniformInt("u_SpecMap", 1);
 		rdc->PlaneShader->UploadUniformFloat3("u_CamPos", cam.GetCamPos());
 	}
 
@@ -218,8 +218,9 @@ namespace Forge {
 		rdc->PlaneShader->UploadUniformMat4("u_Transform", transform);
 		rdc->PlaneShader->UploadUniformMat4("model", model);
 		rdc->PlaneShader->UploadUniformFloat3("u_LightPos", LightPos);
-		texture->bind();
-		SpecularMap->bind();
+		texture->bind(0);
+		SpecularMap->bind(1);
+	
 		
 	  
 		rdc->PlaneVA->bind();

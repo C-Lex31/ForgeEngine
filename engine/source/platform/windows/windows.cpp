@@ -149,10 +149,7 @@ namespace Forge {
 		m_Data.VSync = enabled;
 	}
 
-	void MsWin::EnableDepthTest() const
-	{
-		glEnable(GL_DEPTH_TEST);
-	}
+	
 
 	bool MsWin::IsVSync() const
 	{

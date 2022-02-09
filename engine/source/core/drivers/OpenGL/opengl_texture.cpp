@@ -5,7 +5,7 @@
 namespace Forge {
 
 
-	OpenGLTexture2D::OpenGLTexture2D(const FString& path, const FString& flag)
+	OpenGLTexture2D::OpenGLTexture2D(const FString& path, const uint32_t slot)
 		:m_Path(path)
 	{
 		int width, height, channels;
@@ -27,20 +27,26 @@ namespace Forge {
 			InternalFormat = GL_RGB8;
 			DataFormat = GL_RGB;
 		}
-		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
-	//	glActiveTexture(GL_TEXTURE0 + slot);
-	//	if (flag == "")
-			glTextureStorage2D(m_RendererID, 1, InternalFormat, m_TexWidth, m_TexHeight);
+		else if (channels == 1)
+		{
+			InternalFormat = GL_RGBA8;
+			DataFormat = GL_RED;
+		}
+		glGenTextures(1, &m_RendererID);
+		//glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
+		//glActiveTexture(GL_TEXTURE0 + slot);
+		glBindTexture(GL_TEXTURE_2D, m_RendererID);
+		//glTextureStorage2D(m_RendererID, 1, InternalFormat, m_TexWidth, m_TexHeight);
 		
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
+		FR_TRACE("Image Channels : {0}",channels);
 	//	if(flag=="")
-			glTextureSubImage2D(m_RendererID, 0, 0, 0, m_TexWidth, m_TexHeight, DataFormat, GL_UNSIGNED_BYTE, data);
-		
+		//	glTextureSubImage2D(m_RendererID, 0, 0, 0, m_TexWidth, m_TexHeight, DataFormat, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(GL_TEXTURE_2D, 0,InternalFormat, width, height, 0, DataFormat, GL_UNSIGNED_BYTE, data);
 			stbi_image_free(data);
 	}
 
@@ -52,7 +58,10 @@ namespace Forge {
 	void OpenGLTexture2D::bind(uint32_t slot) const
 	{
 	  //  glActiveTexture(GL_TEXTURE0 + slot);
-		glBindTextureUnit(slot, m_RendererID);
+		glActiveTexture(GL_TEXTURE0 +slot);
+		glBindTexture(GL_TEXTURE_2D, m_RendererID);
+
+		//glBindTextureUnit(slot, m_RendererID);
 	}
 
 }
