@@ -90,6 +90,8 @@ project "engine"
 					buildoptions "/MD"
 					optimize "on"
 
+
+
 project "Anvil"
 
 	location "editor"
@@ -145,6 +147,9 @@ project "Anvil"
 			defines "FR_RELEASE"
 					
 			optimize "on"
+
+
+
 
 			
 

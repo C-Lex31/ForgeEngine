@@ -12,7 +12,7 @@ namespace Forge {
 
 	struct WindowProps
 	{
-		std::string Title;
+		FString Title;
 		uint32_t Width;
 		uint32_t Height;
 
@@ -25,7 +25,7 @@ namespace Forge {
 	};
 
 	//To be implemented per platform,its just an interface
-	class FORGE_API Window
+	class  Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
@@ -45,7 +45,7 @@ namespace Forge {
 
 		virtual void* GetNativeWindow() const = 0;// It returns a void pointer as it doesnt always have to be a glfw window . In future if I decide to use any other Graphics library..it could return HWIN ..etc
 
-		static Window* Create(const WindowProps& props = WindowProps());//implemented per platform
+		static FScope<Window>Create(const WindowProps& props = WindowProps());//implemented per platform
 	};
 
 	

@@ -15,13 +15,14 @@ namespace Forge {
 	class Application
 	{
 	public:
-		Application();
+		Application(const FString& AppName="");
 		virtual~Application();
 		void Run();
 		void OnEvent(Event& e);
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
 	    Window& GetWindow() { return *m_Window; }
+		void Close();
 		static Application& Get() { return *s_Instance; }
 		void test_disp() { printf("Test Pass"); }
 

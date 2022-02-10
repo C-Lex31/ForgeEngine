@@ -1,21 +1,23 @@
- //#include <iostream>
+//#include <iostream>
 #include <ForgeEngine.h>
 #include "platform/windows/winInput.h"
-#include "ForgeEditor.h"
+#include "Anvil2D.h"
+#include "Anvil3D.h"
 //#include "Forge3D.h"
-#include "GLFW/glfw3.h"
+//#include "GLFW/glfw3.h"
 #include "core/client/entry_point.h"
 namespace Forge {
 
-	class Anvil :public Application
+	class ForgeEditor :public Application
 	{
 	public:
-		Anvil()
+		ForgeEditor()
+			:Application("Forge Editor")
 		{
 			//PushLayer(new Engine_Layer());
-			PushLayer(new ForgeEditor());
+			PushLayer(new Anvil());
 		}
-		~Anvil()
+		~ForgeEditor()
 		{
 
 		}
@@ -24,6 +26,6 @@ namespace Forge {
 
 	Application* CreateApplication()
 	{
-		return new Anvil();
+		return new ForgeEditor();
 	}
 }

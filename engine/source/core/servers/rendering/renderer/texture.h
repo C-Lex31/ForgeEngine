@@ -9,6 +9,7 @@ namespace Forge {
 		 
 		virtual uint32_t GetTexWidth() const = 0;
 		virtual uint32_t GetTexHeight() const = 0;
+		virtual uint32_t GetRendererID() const =0;
 		virtual void bind(uint32_t slot=0) const = 0;
 	};
 
@@ -16,6 +17,6 @@ namespace Forge {
 	{
 	public:
 		static FRef<Texture2D> create(const FString& path, const uint32_t slot = 0);
-
+		static FRef<Texture2D> create(uint32_t width, uint32_t height, void* data=nullptr);
 	};
 }

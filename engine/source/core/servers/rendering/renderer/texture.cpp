@@ -13,5 +13,16 @@ namespace Forge {
 		}
 		return 0;
 	}
+	FRef<Texture2D> Texture2D::create(uint32_t width, uint32_t height, void* data)
+	{
+		switch (renderer::get_api())
+		{
+		case renderer_api::api::None:    FR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case renderer_api::api::OpenGL:  return std::make_shared<OpenGLTexture2D>(width, height,data);
+		}
+
+		FR_CORE_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
 
 }

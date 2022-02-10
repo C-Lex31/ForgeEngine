@@ -7,8 +7,8 @@ namespace Forge {
 	struct RenderDataCache
 	{
 		FRef<vertex_array> QuadVA;
-		FRef<shader> QuadShader;
 		FRef<shader> TextureShader;
+		FRef<Texture2D> WhiteTexture;
 	};
 	static RenderDataCache* rdc;
 	void Renderer2D::Init()
@@ -40,8 +40,9 @@ namespace Forge {
 		squareIB.reset(index_buffer::create(SQindices, sizeof(SQindices) / sizeof(uint32_t)));
 		rdc->QuadVA->SetIndexBuffer(squareIB);
 
-		rdc->QuadShader = shader::create("assets/shaders/QuadShader.fsf");
 		rdc->TextureShader = shader::create("assets/shaders/TextureShader.fsf");
+		uint32_t WhiteTexData = 0xffffffff;
+		rdc->WhiteTexture = Texture2D::create(1, 1,&WhiteTexData);
 	//	rdc->TextureShader->UploadUniformInt("u_Texture", 0);
 		//rdc->TextureShader->UploadUniformInt("u_Texture2", 1);
 	}
@@ -53,14 +54,14 @@ namespace Forge {
 
 	void Renderer2D::BeginScene( const orthographic_camera2d& cam2d)
 	{
-		rdc->QuadShader->bind();
-		rdc->QuadShader->UploadUniformMat4("u_ViewProjectionMatrix", cam2d.GetViewProjectionMatrix());
-		rdc->QuadShader->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
-
 		rdc->TextureShader->bind();
 		rdc->TextureShader->UploadUniformMat4("u_ViewProjectionMatrix", cam2d.GetViewProjectionMatrix());
+		rdc->TextureShader->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
+
+	
 	rdc->TextureShader->UploadUniformInt("u_Texture", 0);
-	rdc->TextureShader->UploadUniformInt("u_Texture2", 1);
+	
+//	rdc->TextureShader->UploadUniformInt("u_Texture2", 1);
 	
 	}
 
@@ -73,11 +74,13 @@ namespace Forge {
 	}
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
-		rdc->QuadShader->bind();
-		rdc->QuadShader->UploadUniformFloat4("u_Color",color);
+
+		rdc->TextureShader->UploadUniformFloat4("u_Color",color);
+
+		rdc->WhiteTexture->bind();
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) */*rotation*/
 			glm::scale(glm::mat4(1.0f), { size.x,size.y,1.0f });
-		rdc->QuadShader->UploadUniformMat4("u_Transform", transform);
+		rdc->TextureShader->UploadUniformMat4("u_Transform", transform);
 		rdc->QuadVA->bind();
 		render_commands::drawElements(rdc->QuadVA);
 	}
@@ -87,14 +90,14 @@ namespace Forge {
 	}
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const FRef<Texture2D>& texture, const FRef<Texture2D>& texture1)
 	{
-		rdc->TextureShader->bind();
-	
+	//	rdc->TextureShader->bind();
+		rdc->TextureShader->UploadUniformFloat4("u_Color", { 0.7,0.3,0.25,1.0 });
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) */*rotation*/
 			glm::scale(glm::mat4(1.0f), { size.x,size.y,1.0f });
-		rdc->QuadShader->UploadUniformMat4("u_Transform", transform);
+		rdc->TextureShader->UploadUniformMat4("u_Transform", transform);
 		//rdc->TextureShader->UploadUniformInt("u_Texture", 0);
 		texture->bind();
-		texture1->bind(1);
+		//texture1->bind(1);
 		
 		rdc->QuadVA->bind();
 		render_commands::drawElements(rdc->QuadVA);

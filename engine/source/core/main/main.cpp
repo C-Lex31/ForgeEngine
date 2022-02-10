@@ -7,10 +7,10 @@
 namespace Forge {
 #define FR_BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
 	Application* Application::s_Instance = nullptr;
-	Application::Application()
+	Application::Application(const FString& AppName)
 	{
 		s_Instance = this;
-		m_Window = std::unique_ptr<Window>(Window::Create());//explicit contructor?
+		m_Window = Window::Create(WindowProps(AppName));//explicit contructor?
 		m_Window->SetEventCallback(FR_BIND_EVENT_FN(OnEvent));
 		m_Window->SetVSync(true);
 	//	m_Window->EnableDepthTest();
@@ -32,6 +32,11 @@ namespace Forge {
 	{
 		m_LayerStack.PushOverlay(layer);
 		layer->OnAttach();
+	}
+
+	void Application::Close()
+	{
+		m_running = false;
 	}
 
 	void Application::OnEvent(Event& e)

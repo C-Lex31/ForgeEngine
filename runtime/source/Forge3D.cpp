@@ -38,9 +38,9 @@ void Forge3D::OnUpdate(Forge::Timestep ts)
 
 void Forge3D::OnGUIRender()
 {
-	ForgeUI::Begin("Settings");
-	ForgeUI::ColorEdit4("Cube Color", glm::value_ptr(CubeColor));
-	ForgeUI::End();
+	ImGui::Begin("Settings");
+	ImGui::ColorEdit4("Cube Color", glm::value_ptr(CubeColor));
+	ImGui::End();
 }
 
 void Forge3D::OnEvent(Forge::Event& event)

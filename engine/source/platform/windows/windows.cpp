@@ -10,10 +10,10 @@
 namespace Forge {
 
 	static bool s_GLFWInitialized = false;
-	Window* Window::Create(const WindowProps& props)
+	/*Window* Window::Create(const WindowProps& props)
 	{
-		return new MsWin(props);//returns the window pointer,catched in Application class by a nique pointer
-	}
+		return new MsWin(props);//returns the window pointer,catched in Application class by a unique pointer
+	}*/
 
 	MsWin::MsWin(const WindowProps& props)
 	{
