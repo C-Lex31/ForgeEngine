@@ -39,10 +39,13 @@ namespace Forge {
 		m_running = false;
 	}
 
+	
+
 	void Application::OnEvent(Event& e)
 	{
 		//IR_CORE_INFO("{0}", e);
-
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowResizeEvent>(FR_BIND_EVENT_FN(OnWindowResize));
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
 			(*--it)->OnEvent(e);
@@ -50,6 +53,20 @@ namespace Forge {
 				break;
 		}
 	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+		return false;
+	}
+
 	void Application::Run()
 	{
 		
@@ -59,18 +76,21 @@ namespace Forge {
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate(timestep);
-
-			m_guiLayer->Begin();
-
-			for (Layer* layer : m_LayerStack)
+			if (!m_Minimized)
 			{
-				layer->OnGUIRender();
-				
+				for (Layer* layer : m_LayerStack)
+					layer->OnUpdate(timestep);
 			}
 
-			m_guiLayer->End();
+				m_guiLayer->Begin();
+
+				for (Layer* layer : m_LayerStack)
+				{
+					layer->OnGUIRender();
+
+				}
+
+				m_guiLayer->End();
 			
 			m_Window->OnUpdate();
 		}

@@ -52,7 +52,7 @@ namespace Forge {
 		delete rdc;
 	}
 
-	void Renderer2D::BeginScene( const orthographic_camera2d& cam2d)
+	void Renderer2D::BeginScene( const orthographic_camera& cam2d)
 	{
 		rdc->TextureShader->bind();
 		rdc->TextureShader->UploadUniformMat4("u_ViewProjectionMatrix", cam2d.GetViewProjectionMatrix());
@@ -91,7 +91,7 @@ namespace Forge {
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const FRef<Texture2D>& texture, const FRef<Texture2D>& texture1)
 	{
 	//	rdc->TextureShader->bind();
-		rdc->TextureShader->UploadUniformFloat4("u_Color", { 0.7,0.3,0.25,1.0 });
+		rdc->TextureShader->UploadUniformFloat4("u_Color", {1.0,1.0,1.0,1.0});
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) */*rotation*/
 			glm::scale(glm::mat4(1.0f), { size.x,size.y,1.0f });
 		rdc->TextureShader->UploadUniformMat4("u_Transform", transform);

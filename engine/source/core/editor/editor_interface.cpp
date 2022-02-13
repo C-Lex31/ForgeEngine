@@ -61,8 +61,9 @@ namespace Forge {
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		Application& is = Application::Get();
+	//	io.AddMouseWheelEvent()
 		io.DisplaySize = ImVec2((float)is.GetWindow().GetWidth(), (float)is.GetWindow().GetHeight());
-
+		
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
@@ -77,14 +78,40 @@ namespace Forge {
 
 	}
 
+	
+
 	void UI_Layer::OnGUIRender()
 	{
 	//	static bool show = true;
 	//	ImGui::ShowDemoWindow(&show);
 		
 	}
-	
 
+	void UI_Layer::OnEvent(Event& e)
+	{
+		
+		
+		if (m_EventLock)
+		{
+			ImGuiIO& io = ImGui::GetIO();
+		//	EventDispatcher dispatcher(e);
+		//	dispatcher.Dispatch<MouseScrolledEvent>(FR_BIND_EVENT_FN(UI_Layer::OnMouseScrolledEvent));
+			//io.WantCaptureKeyboard;
+			e.m_handled |= e.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
+			e.m_handled |= e.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard; 
+		//	FR_TRACE( e.m_handled);
+		}
+		
+
+	}
+	
+	bool UI_Layer::OnMouseScrolledEvent(MouseScrolledEvent& e)
+	{
+		//ImGuiIO& io = ImGui::GetIO();
+		//i//o.MouseWheel += e.GetYOffset();
+		//FR_TRACE("enter");
+		return false;
+	}
 
 
 

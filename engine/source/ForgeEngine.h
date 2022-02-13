@@ -26,8 +26,9 @@
 #include "core/servers/rendering/renderer/texture.h"
 #include "core/servers/rendering/renderer/framebuffer.h"
 
-#include "core/servers/camera/orthographic_camera2d.h"
-#include "core/servers/camera/Camera.h"
+#include "core/servers/camera/2D/orthographic_camera.h"
+#include "core/servers/camera/2D/controller.h"
+#include "core/servers/camera/3D/Camera.h"
 
 
 #include "imgui.h"

@@ -19,7 +19,12 @@ namespace Forge {
 		Renderer2D::Shutdown();
 	}
 
-	 void renderer::IR_BeginScene(orthographic_camera2d& cam)
+	void renderer::OnWindowResize(uint32_t width, uint32_t height)
+	{
+		render_commands::SetViewport(0, 0, width, height);
+	}
+
+	void renderer::IR_BeginScene(orthographic_camera& cam)
 	 {
 		 m_SceneData->ViewProjectionatrix = cam.GetViewProjectionMatrix();
 	 }

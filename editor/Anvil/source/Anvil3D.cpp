@@ -113,13 +113,42 @@ namespace Forge {
             ImGui::EndMenuBar();
         }
         ImGui::Begin("Settings");
-        ImGui::Begin("Settings");
-        ImGui::ColorEdit4("Cube Color", glm::value_ptr(CubeColor));
-        ImGui::End();
-        uint32_t TexID = m_Framebuffer->GetColorAttachmentID();
-        ImGui::Image((void*)TexID, ImVec2(1366.0f, 705.0f),ImVec2(0,1) , ImVec2(1,0));
-        ImGui::End();
 
+        ImGui::ColorEdit4("Cube Color", glm::value_ptr(CubeColor));
+
+      //  uint32_t TexID = m_Framebuffer->GetColorAttachmentID();
+      //  ImGui::Image((void*)TexID, ImVec2(1366.0f, 705.0f),ImVec2(0,1) , ImVec2(1,0));
+        ImGui::End();
+        ImGui::Begin("Scene View");
+
+        //ImGui::Checkbox("io.ConfigViewportsNoAutoMerge", &io.ConfigViewportsNoAutoMerge);
+        ImVec2 ViewportPanelSize = ImGui::GetContentRegionAvail();
+        OnViewportFocus = ImGui::IsWindowFocused();
+        OnViewportDock = ImGui::IsWindowDocked();
+        OnViewportHover = ImGui::IsWindowHovered();
+
+
+        if ((OnViewportDock && !(OnViewportFocus)) || (!OnViewportDock && (!OnViewportFocus)) || (!OnViewportDock && OnViewportHover))
+        {
+
+            Application::Get().get_ui_layer()->InitiateEventLock(true);
+
+        }
+        else if ((!OnViewportDock && OnViewportFocus) || (OnViewportDock && OnViewportFocus) || (OnViewportDock && OnViewportHover))
+        {
+
+            Application::Get().get_ui_layer()->InitiateEventLock(false);
+        }
+        if (m_ViewportSize != *(glm::vec2*)&ViewportPanelSize) //--->Casting memory address of VPS to glm vec 2 ptr and then derefrencing
+        {
+            m_ViewportSize = { ViewportPanelSize.x,ViewportPanelSize.y };
+            m_Framebuffer->resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+           // m_CameraController.ResizeBounds(ViewportPanelSize.x, ViewportPanelSize.y);
+        }
+        // FR_TRACE("Viewport :{0},{1}", ViewportPanelSize.x, ViewportPanelSize.y);
+        uint32_t TexID = m_Framebuffer->GetColorAttachmentID();
+        ImGui::Image((void*)TexID, ImVec2(m_ViewportSize.x, m_ViewportSize.y), ImVec2(0, 1), ImVec2(1, 0));
+        ImGui::End();  ///End Scene View
         ImGui::End();
 
 	}

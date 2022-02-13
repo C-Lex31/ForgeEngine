@@ -63,7 +63,7 @@ vec4 SpecularLight()
 	float s_amt = pow(max(dot(ViewDir,ReflectionDir),0.0f) , 16.0f);
 	float specularity = s_amt * SpecularLight;
 	float diffusion = max(dot(normal , LightDir) , 0.0f);
-	return (texture(u_Texture,v_TexCoord)* u_Color*(diffusion + ambience) +texture(u_SpecMap,v_TexCoord).r*specularity );
+	return (texture(u_Texture,v_TexCoord)* u_Color*(diffusion + ambience) +texture(u_SpecMap,v_TexCoord).r *specularity );
 }
 
 vec4 SpotLight()
@@ -94,5 +94,5 @@ vec4 SpotLight()
 }
 void main()
 {
-	Color = PointLight();
+	Color = SpecularLight();
 }

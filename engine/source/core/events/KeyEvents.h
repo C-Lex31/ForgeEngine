@@ -5,7 +5,7 @@
 
 namespace Forge {
 
-	class FORGE_API KeyEvent : public Event
+	class  KeyEvent : public Event
 	{
 	public:
 		int GetKeyCode() const { return m_KeyCode; }

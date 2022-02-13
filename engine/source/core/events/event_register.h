@@ -32,22 +32,21 @@ namespace Forge {
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
 
-	class FORGE_API Event
+	class Event
 	{
-		friend class EventDispatcher;
+		//friend class EventDispatcher;
 	public:
-
+		bool m_handled = false;
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
-		virtual std::string ToString() const { return GetName(); }
+		virtual FString ToString() const { return GetName(); }
 
 		inline bool IsInCategory(EventCategory category)
 		{
 			return GetCategoryFlags() & category;
 		}
 
-		bool m_handled = false;
 	};
 
 	class  EventDispatcher
@@ -61,12 +60,14 @@ namespace Forge {
 		}
 
 		// F will be deduced by the compiler
-		template<typename T>
-		bool Dispatch(EventFn<T> func)
+		template<typename T, typename F>
+		bool Dispatch(const F& func)//EventFn<T> func)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_handled = func(*(T*)&m_Event);
+				/*m_Event.m_handled = func(*(T*)&m_Event);
+				return true;*/
+				m_Event.m_handled |= func(static_cast<T&>(m_Event));
 				return true;
 			}
 			return false;

@@ -10,13 +10,14 @@ namespace Forge {
 		virtual ~OpenGLFramebuffer();
 		void Invalidate();
 		virtual const FramebufferSpecs& GetFSpecs() const override { return m_Specification; }
-		virtual const uint32_t GetColorAttachmentID() const override { return m_ColorAttachment; }  
-		virtual void bind() const override;
-		virtual void unbind()const override;
+		virtual const uint32_t GetColorAttachmentID() const override { return m_ColorAttachment; }
+		virtual void resize(uint32_t vp_width, uint32_t vp_height)  override;
+		virtual void bind()  override;
+		virtual void unbind() override;
 	private:
 		FramebufferSpecs m_Specification;
 		uint32_t m_ColorAttachment;
-		uint32_t m_DepthAttachment;
-		uint32_t m_RendererID;
+		uint32_t m_DepthAttachment=0;
+		uint32_t m_RendererID=0;
 	};
 }

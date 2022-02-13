@@ -12,7 +12,8 @@ public:
 	virtual void OnGUIRender() override;
 	void OnEvent(Forge::Event& event)override;
 private:
-	Forge::orthographic_camera2d m_Cam2d;
+	//Forge::orthographic_camera m_Cam2d;
+	Forge::OrthographicCameraController m_Cam;
 	Forge::FRef<Forge::vertex_array> SQvertexArray;
 
 	Forge::FRef<Forge::shader> m_Shader;

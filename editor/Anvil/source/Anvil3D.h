@@ -23,5 +23,10 @@ namespace Forge {
 		glm::vec4 CubeColor = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
 		glm::vec4 LightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 		glm::vec3 LightPos = glm::vec3(-0.2f, 0.1f, -0.1f);
+
+		glm::vec2 m_ViewportSize = { 0.0f,0.0f };
+		bool OnViewportFocus = false;
+		bool OnViewportHover = false;
+		bool OnViewportDock = false;
 	};
 }

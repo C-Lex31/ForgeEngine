@@ -3,7 +3,7 @@
 namespace Forge {
 
 	Anvil::Anvil()
-		:Layer("Forge2D"), m_Cam2d(-1.6f, 1.6f, -0.9f, 0.9f)
+		:Layer("Forge2D"),m_CameraController(1366/705,true)
 	{
 
 	}
@@ -27,14 +27,20 @@ namespace Forge {
 	void Anvil::OnUpdate(Timestep ts)
 	{
         //--------------------------------------------------2D Camera------------------------------------------------------------------------------------------------------
-        m_Cam2d.OrthographicCameraInput(ts.GetSec());
+      // m_Cam2d.OrthographicCameraInput(ts.GetSec());
+    //    FR_TRACE((!OnViewportDock && OnViewportFocus) || (OnViewportDock && OnViewportFocus));
+        if ((!OnViewportDock && OnViewportFocus) || (OnViewportDock && OnViewportFocus))
+        {
+            m_CameraController.OnUpdate(ts);
+        
+        }
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
         m_Framebuffer->bind();
         render_commands::SetClearColor({ 0.2, 0.2, 0.2, 1 });
         render_commands::clear();
 
 
-        Renderer2D::BeginScene(m_Cam2d);
+        Renderer2D::BeginScene(m_CameraController.GetCamera());
         Renderer2D::DrawQuad({ 0.0f,0.0f }, { 1.7f,0.5f }, QuadColor1);
         Renderer2D::DrawQuad({ 1.0f,0.0f }, { 0.8f,0.5f }, QuadColor2);
         //Renderer2D::DrawQuad({ 0.0f,0.0f }, { 1.0f,1.0f }, m_Logo);
@@ -114,17 +120,71 @@ namespace Forge {
             ImGui::EndMenuBar();
         }
         ImGui::Begin("Settings");
+       
         ImGui::ColorEdit4("Quad Color 1", glm::value_ptr(QuadColor1));
         ImGui::ColorEdit4("Quad Color 2", glm::value_ptr(QuadColor2));
-        uint32_t TexID = m_Framebuffer->GetColorAttachmentID();
-        ImGui::Image((void*)TexID, ImVec2(1366.0f, 705.0f));
+        
         ImGui::End();
+       
+        ImGui::Begin("Scene View");
+        ImGuiBackendFlags backend_flags = io.BackendFlags;
+        ImGui::Checkbox("io.ConfigViewportsNoAutoMerge", &io.ConfigViewportsNoAutoMerge);
+      //  ImGui::CheckboxFlags("io.ConfigFlags: ViewportsEnable", &io.ConfigFlags, ImGuiConfigFlags_ViewportsEnable);
+      //  ImGui::CheckboxFlags("io.BackendFlags: HasMouseHoveredViewport", &backend_flags, ImGuiBackendFlags_HasMouseHoveredViewport);
+     //   ImGui::Checkbox("io.ConfigDockingTransparentPayload", &io.ConfigDockingTransparentPayload);
+      //  ImGui::CheckboxFlags("io.BackendFlags: PlatformHasViewports", &backend_flags, ImGuiBackendFlags_PlatformHasViewports);
+    //  backend_flags=  ImGuiBackendFlags_HasMouseHoveredViewport;
+    //  io.ConfigDockingTransparentPayload =true;
+      //backend_flags= ImGuiBackendFlags_PlatformHasViewports;
+        OnViewportFocus = ImGui::IsWindowFocused();
+        OnViewportDock = ImGui::IsWindowDocked();
+        OnViewportHover = ImGui::IsWindowHovered();
+        
 
-        ImGui::End();
+      //  if ((OnViewportDock && !(OnViewportFocus)) || (!OnViewportDock && (!OnViewportFocus ))  )
+     //   {
+        //    FR_TRACE("enter");
+          //  Application::Get().get_ui_layer()->InitiateEventLock(true );
+           
+      //  }
+        if ((OnViewportDock && !(OnViewportFocus)) || (!OnViewportDock && !OnViewportFocus) || !OnViewportHover )
+        {
+            Application::Get().get_ui_layer()->InitiateEventLock(true);
+        }
+      //  else if ((OnViewportDock && OnViewportFocus)|| (!OnViewportDock && OnViewportFocus) || (OnViewportHover && !OnViewportFocus ) )
+        if (OnViewportFocus || OnViewportHover)
+
+        {
+
+           Application::Get().get_ui_layer()->InitiateEventLock(false);
+        }
+     
+        ImVec2 ViewportPanelSize = ImGui::GetContentRegionAvail();
+        if (m_ViewportSize != *(glm::vec2*)& ViewportPanelSize) //--->Casting memory address of VPS to glm vec 2 ptr and then derefrencing
+        {
+
+            
+            m_ViewportSize = { ViewportPanelSize.x,ViewportPanelSize.y };
+         //   m_Framebuffer->resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+            m_CameraController.ResizeBounds(ViewportPanelSize.x, ViewportPanelSize.y);
+        }
+       // FR_TRACE("Viewport :{0},{1}", ViewportPanelSize.x, ViewportPanelSize.y);
+        uint32_t TexID = m_Framebuffer->GetColorAttachmentID();
+        ImGui::Image((void*)TexID, ImVec2(m_ViewportSize.x, m_ViewportSize.y), ImVec2(0, 1), ImVec2(1, 0));
+        ImGui::End();  ///End Scene View
+
+        static bool show = true;
+        ImGui::ShowDemoWindow(&show);
+
+        ImGui::End(); ///Shutdown Docker
 	}
 
 	void Anvil::OnEvent(Event& event)
 	{
+       
+        m_CameraController.OnEvent(event);
+      //  if ((!OnViewportDock && OnViewportFocus) || (OnViewportDock && OnViewportFocus))
+        // event.m_handled |= event.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
 	}
 
 }

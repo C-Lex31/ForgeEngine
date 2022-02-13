@@ -15,34 +15,34 @@ namespace Forge {
 
 	void Camera::CamInput(float sec)
 	{
-		if (input::isKeyPressed(FR_KEY_LEFT_SHIFT))
+		if (input::isKeyPressed(KeyCode::LeftShift))
 			CamTranslationSpeed = 3.3f;
 		else 
 			CamTranslationSpeed = 1.5f;
-		if (input::isKeyPressed(FR_KEY_W))
+		if (input::isKeyPressed(KeyCode::W))
 			Camera::Position += CamTranslationSpeed * Camera::m_Orientation * sec;
 
-		if (input::isKeyPressed(FR_KEY_S))
+		if (input::isKeyPressed(KeyCode::S))
 			Camera::Position += CamTranslationSpeed * (-Camera::m_Orientation) * sec;
-		if (Forge::input::isKeyPressed(FR_KEY_A))
+		if (input::isKeyPressed(KeyCode::A))
 			Camera::Position += CamTranslationSpeed * -glm::normalize(glm::cross((Camera::m_Orientation), Camera::up)) * sec;
-		if (Forge::input::isKeyPressed(FR_KEY_D))
+		if (input::isKeyPressed(KeyCode::D))
 			Camera::Position += CamTranslationSpeed * glm::normalize(glm::cross((Camera::m_Orientation), Camera::up)) * sec;
-		if (input::isKeyPressed(FR_KEY_E))
+		if (input::isKeyPressed(KeyCode::E))
 			Camera::Position += CamTranslationSpeed * Camera::up * sec;
-		if (input::isKeyPressed(FR_KEY_Q))
+		if (input::isKeyPressed(KeyCode::Q))
 			Camera::Position += CamTranslationSpeed * -Camera::up * sec;
 
-		if (Forge::input::isMouseButtonPressed(FR_MOUSE_BUTTON_RIGHT))
+		if (input::isMouseButtonPressed(FR_MOUSE_BUTTON_RIGHT))
 		{
-			Forge::input::HideCursor();
-			float xPos = Forge::input::GetMouseX();
-			float yPos = Forge::input::GetMouseY();
-			if (Forge::Camera::firstMouse)
+			input::HideCursor();
+			float xPos = input::GetMouseX();
+			float yPos = input::GetMouseY();
+			if (Camera::firstMouse)
 			{
 				lastX = xPos;
 				lastY = yPos;
-				Forge::Camera::firstMouse = false;
+				Camera::firstMouse = false;
 			}
 
 
@@ -67,9 +67,9 @@ namespace Forge {
 			direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
 			direction.y = sin(glm::radians(pitch));
 			direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-			Forge::Camera::m_Orientation = glm::normalize(direction);
+			Camera::m_Orientation = glm::normalize(direction);
 		}
-		else { Forge::Camera::firstMouse = true; Forge::input::ShowCursor(); }
+		else { Camera::firstMouse = true; input::ShowCursor(); }
 	}
 
 	void Camera::RecalculateViewMatrix(float FOV,float nearPlane,float farPlane)

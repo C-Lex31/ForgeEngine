@@ -24,5 +24,5 @@ uniform sampler2D u_Texture2;
 uniform vec4 u_Color;
 void main()
 {
-	Color =mix(texture(u_Texture, v_TexCoord*10),texture(u_Texture2, v_TexCoord),0.2) * u_Color;
+	Color =mix(texture(u_Texture, v_TexCoord*5),texture(u_Texture2, v_TexCoord),0.2) * u_Color;
 }

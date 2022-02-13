@@ -21,16 +21,22 @@ namespace Forge {
 		void OnEvent(Event& e);
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
+		UI_Layer* get_ui_layer() { return m_guiLayer; }
 	    Window& GetWindow() { return *m_Window; }
 		void Close();
 		static Application& Get() { return *s_Instance; }
 		void test_disp() { printf("Test Pass"); }
 
 	private:
+		bool OnWindowResize(WindowResizeEvent& e);
+		//Close event
+	
+	private:
 	    FScope<Window> m_Window;
 		UI_Layer* m_guiLayer;
 		float m_LastFrameTime = 0.0f;
 		bool m_running = true;
+		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		
 

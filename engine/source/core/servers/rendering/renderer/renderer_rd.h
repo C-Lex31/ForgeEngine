@@ -2,7 +2,7 @@
 
 #include "render_commands.h"
 #include "shader.h"
-#include "core/servers/camera/orthographic_camera2d.h"
+#include "core/servers/camera/2D/orthographic_camera.h"
 #include "core/servers/camera/Camera.h"
 namespace Forge {
 
@@ -13,7 +13,8 @@ namespace Forge {
 		static void Init();
 		static void Shutdown();
 
-		static void IR_BeginScene(orthographic_camera2d& cam);
+		static void OnWindowResize(uint32_t width, uint32_t height);
+		static void IR_BeginScene(orthographic_camera& cam);
 		static void IR_BeginScene(Camera& cam);
 		static void IR_EndScene();
 
