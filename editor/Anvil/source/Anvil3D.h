@@ -13,7 +13,8 @@ namespace Forge {
 		virtual void OnGUIRender() override;
 		void OnEvent(Event& event)override;
 	private:
-		Camera m_Cam;
+		CameraController m_CamController;
+		//Camera m_Cam;
 		FRef<vertex_array> m_vertexArray;
 		FRef<Texture2D>m_Texture2D;
 		FRef<Texture2D>m_PlankTexture;
@@ -28,5 +29,7 @@ namespace Forge {
 		bool OnViewportFocus = false;
 		bool OnViewportHover = false;
 		bool OnViewportDock = false;
+
+		short AvoidHoverCheckFlag = 0;
 	};
 }
