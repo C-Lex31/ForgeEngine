@@ -12,7 +12,7 @@ public:
 	virtual void OnGUIRender() override;
 	void OnEvent(Forge::Event& event)override;
 private:
-	Forge::Camera m_Cam;
+	Forge::CameraController m_Cam;
 	Forge::FRef<Forge::vertex_array> m_vertexArray;
 	Forge::FRef<Forge::Texture2D>m_Texture2D;
 	Forge::FRef<Forge::Texture2D>m_PlankTexture;

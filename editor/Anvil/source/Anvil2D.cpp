@@ -152,7 +152,7 @@ namespace Forge {
             Application::Get().get_ui_layer()->InitiateEventLock(true);
         }
       //  else if ((OnViewportDock && OnViewportFocus)|| (!OnViewportDock && OnViewportFocus) || (OnViewportHover && !OnViewportFocus ) )
-        if (OnViewportFocus || OnViewportHover)
+        if ((OnViewportFocus&& OnViewportHover) || OnViewportHover)
 
         {
 

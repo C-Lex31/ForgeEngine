@@ -47,7 +47,6 @@ namespace Forge {
 	
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
 	}
 	void winInput::ShowCursorImpl()
 	{

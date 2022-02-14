@@ -28,6 +28,7 @@
 
 #include "core/servers/camera/2D/orthographic_camera.h"
 #include "core/servers/camera/2D/controller.h"
+#include "core/servers/camera/3D/controller_main.h"
 #include "core/servers/camera/3D/Camera.h"
 
 

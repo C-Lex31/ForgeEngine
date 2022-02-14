@@ -15,7 +15,7 @@ namespace Forge {
 			:Application("Forge Editor")
 		{
 			//PushLayer(new Engine_Layer());
-			PushLayer(new Anvil());
+			PushLayer(new Anvil3D());
 		}
 		~ForgeEditor()
 		{

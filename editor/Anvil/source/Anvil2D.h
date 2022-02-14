@@ -13,7 +13,7 @@ namespace Forge {
 		virtual void OnGUIRender() override;
 		void OnEvent(Event& event)override;
 	private:
-	//	orthographic_camera m_Cam2d;
+
 		OrthographicCameraController m_CameraController;
 		FRef<vertex_array> SQvertexArray;
 

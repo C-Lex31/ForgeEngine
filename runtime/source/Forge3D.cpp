@@ -2,7 +2,7 @@
 #include "ForgeEngine.h"
 
 Forge3D::Forge3D()
-	:Layer("Forge3D"),m_Cam(1366, 705, glm::vec3(0, 0, 2))
+	:Layer("Forge3D"), m_Cam(1366/705, { 0, 0, 1 })
 {
 }
 
@@ -21,13 +21,13 @@ void Forge3D::OnDetach()
 void Forge3D::OnUpdate(Forge::Timestep ts)
 {
 	
-	m_Cam.CamInput(ts.GetSec());
-	m_Cam.RecalculateViewMatrix();
+	m_Cam.OnUpdate(ts);
+	
 	
 	Forge::render_commands::SetClearColor({ 0.2, 0.2, 0.2, 1 });
 	Forge::render_commands::clear();
 
-	Forge::Renderer3D::BeginScene(m_Cam);
+	Forge::Renderer3D::BeginScene(m_Cam.GetCamera());
 
 	//Forge::Renderer3D::DrawPyramid({-0.0f,-0.49f,-0.1f}, {0.6f,0.6f,0.6f},m_Texture2D,LightColor,LightPos);
 	Forge::Renderer3D::DrawPlane({0.0f,-0.5f,0.0f}, {5.0f,0.0f,5.0f},m_PlankTexture, m_PlankSpecular,LightColor,LightPos);

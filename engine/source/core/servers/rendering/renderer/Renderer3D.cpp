@@ -186,7 +186,7 @@ namespace Forge {
 		delete rdc;
 	}
 
-	void Renderer3D::BeginScene(const Camera& cam)
+	void Renderer3D::BeginScene(const Camera& cam )
 	{
 		glm::mat4 model = glm::mat4(1.0f);
 		rdc->PyroTexShader->bind();
@@ -194,6 +194,8 @@ namespace Forge {
 		rdc->PyroTexShader->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
 		rdc->PyroTexShader->UploadUniformInt("u_Texture", 0);
 		rdc->PyroTexShader->UploadUniformFloat3("u_CamPos", cam.GetCamPos());
+	//  glm::vec3 fuck = cam.GetCamPos();
+	//	FR_TRACE("{0} ,{1}, {2}", fuck.x ,fuck.y ,fuck.z);
 		rdc->CubeShader->bind();
 		rdc->CubeShader->UploadUniformMat4("u_ViewProjectionMatrix", cam.GetViewProjectionMatrix());
 		rdc->CubeShader->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
