@@ -15,6 +15,7 @@ IncludeDir["GLFW"] = "dependencies/Libraries/GLFW/include"
 IncludeDir["GLAD"] = "dependencies/Libraries/GLAD/include"
 IncludeDir["UI"]  =  "vendor/UI/central"
 IncludeDir["img_loader"]  =  "engine/helpers/img_loader"
+IncludeDir["ecs"]  =  "engine/helpers/ecs"
 
 include "dependencies/Libraries/GLFW"
 include "dependencies/Libraries/GLAD"
@@ -55,7 +56,8 @@ project "engine"
 			  "%{IncludeDir.GLFW}",
 			   "%{IncludeDir.GLAD}",
 			   "%{IncludeDir.UI}",
-			    "%{IncludeDir.img_loader}"
+			    "%{IncludeDir.img_loader}",
+				"%{IncludeDir.ecs}"
 			  
 		 }
 
@@ -116,7 +118,8 @@ project "Anvil"
 		"vendor/UI/central",
 		"engine/source",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.GLAD}"
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.ecs}"
 			 
 	}
 
@@ -177,7 +180,8 @@ project "Anvil"
 			  "vendor/UI/central",
 			  "engine/source",
 			  "%{IncludeDir.GLFW}",
-			  "%{IncludeDir.GLAD}"
+			  "%{IncludeDir.GLAD}",
+			  "%{IncludeDir.ecs}"
 			 
 		 }
 

@@ -24,7 +24,7 @@ namespace Forge {
 			s_renderer_api->SetViewport(x, y, width, height);
 		}
 
-		inline static void drawElements(const FRef<vertex_array>& va)
+		inline static void drawElements(const FRef<vertex_array>& va, uint32_t index_count = 0)
 		{
 			s_renderer_api->drawElements(va);
 		}

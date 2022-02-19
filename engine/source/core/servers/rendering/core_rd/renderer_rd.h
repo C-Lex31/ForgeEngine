@@ -28,6 +28,6 @@ namespace Forge {
 			glm::mat4 ViewProjectionatrix;
 		};
 
-		static SceneData* m_SceneData;
+		static FScope<SceneData> m_SceneData;
 	};
 }

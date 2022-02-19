@@ -39,7 +39,7 @@ namespace Forge {
 		if (input::isKeyPressed(KeyCode::Q))
 			CameraController::Position += CamTranslationSpeed * -CameraController::up * ts.GetSec();
 
-		if (input::isMouseButtonPressed(FR_MOUSE_BUTTON_RIGHT))
+		if (input::isMouseButtonPressed(Mouse::Button1))
 		{
 			input::HideCursor();
 			float xPos = input::GetMouseX();

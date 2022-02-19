@@ -1,6 +1,6 @@
 #pragma once
 #include "glad/glad.h"
-#include "core/servers/rendering/renderer/texture.h"
+#include "core/servers/rendering/core_rd/texture.h"
 namespace Forge {
 
 	class OpenGLTexture2D : public Texture2D
@@ -13,6 +13,7 @@ namespace Forge {
 		virtual uint32_t GetTexHeight() const override { return m_TexHeight; }
 		virtual uint32_t GetRendererID() const override { return m_RendererID; }
 		virtual void bind(uint32_t slot) const override;
+		virtual bool operator==(const Texture& other) const override { return m_RendererID == ((OpenGLTexture2D&)other).m_RendererID; }
 	private:
 		FString m_Path;
 		uint32_t m_TexWidth;

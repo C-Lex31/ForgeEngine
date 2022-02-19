@@ -27,10 +27,12 @@ namespace Forge {
 		glViewport(x, y, width, height);
 	}
 
-    void OpenGLRendererAPI::drawElements(const FRef<vertex_array>& va)
+    void OpenGLRendererAPI::drawElements(const FRef<vertex_array>& va , uint32_t index_count )
 	{
-		glDrawElements(GL_TRIANGLES, va->GetIndexBuffers()->GetCount(), GL_UNSIGNED_INT, nullptr);
-		//glBindTexture(GL_TEXTURE_2D, 0);
+	
+		uint32_t count = index_count==0 ? va->GetIndexBuffers()->GetCount() : index_count;
+		glDrawElements(GL_TRIANGLES, count , GL_UNSIGNED_INT, nullptr);
+	//	glBindTexture(GL_TEXTURE_2D, 0);
 	}
 	float OpenGLRendererAPI::GetTime()
 	{

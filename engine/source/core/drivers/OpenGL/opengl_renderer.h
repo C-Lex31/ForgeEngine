@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/servers/rendering/renderer/renderer_api.h"
+#include "core/servers/rendering/core_rd/renderer_api.h"
 
 namespace Forge {
 
@@ -12,7 +12,7 @@ namespace Forge {
 
 		virtual void SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height) override;
 
-	    virtual void drawElements(const FRef<vertex_array>& va) override;
+	    virtual void drawElements(const FRef<vertex_array>& va , uint32_t index_count =0) override;
 		virtual float GetTime();
 	};
 

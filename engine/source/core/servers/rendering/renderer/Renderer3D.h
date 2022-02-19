@@ -1,8 +1,8 @@
 #pragma once
 
-#include "render_commands.h"
+#include "core/servers/rendering/core_rd/render_commands.h"
 #include "core/servers/camera/3D/controller_main.h"
-#include "texture.h"
+#include "core/servers/rendering/core_rd/texture.h"
 namespace Forge {
 
 	class Renderer3D

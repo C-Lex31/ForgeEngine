@@ -1,7 +1,7 @@
 #include "frpch.h"
 #include "Renderer3D.h"
-#include "vertexArray.h"
-#include "shader.h"
+#include "core/servers/rendering/renderer/Renderer3D.h"
+#include "core/servers/rendering/core_rd/shader.h"
 #include "glm/gtc/matrix_transform.hpp"
 
 namespace Forge {
@@ -28,8 +28,7 @@ namespace Forge {
 			 0.5f,0.0f,-0.5f,	1.0f,1.0f,   0.0f,1.0f,0.0f,
 			 0.5f,0.0f, 0.5f,	1.0f,0.0f,   0.0f,1.0f,0.0f
 		};
-		FRef<vertex_buffer>PlaneBuffer;
-		PlaneBuffer.reset(vertex_buffer::create(PlaneVert, sizeof(PlaneVert)));
+		FRef<vertex_buffer>PlaneBuffer= vertex_buffer::create(PlaneVert, sizeof(PlaneVert));
 		buffer_layout PlaneLayout = {
 			{"a_Pos" ,ShaderDataType::FRfloat3},
 			{"a_TexCoord",ShaderDataType::FRfloat2},
@@ -43,8 +42,7 @@ namespace Forge {
 			0,2,3
 		};
 
-		FRef<index_buffer>PlaneIB;
-		PlaneIB.reset(index_buffer::create(PlaneIndices, sizeof(PlaneIndices) / sizeof(uint32_t)));
+		FRef<index_buffer>PlaneIB=index_buffer::create(PlaneIndices, sizeof(PlaneIndices) / sizeof(uint32_t));
 		rdc->PlaneVA->SetIndexBuffer(PlaneIB);
 
 		rdc->PyroVA = vertex_array::create();
@@ -78,8 +76,7 @@ namespace Forge {
 			 0.0f, 0.8f,  0.0f,   	 2.5f, 5.0f,      0.0f, 0.5f,  0.8f  // Facing side
 		};
 
-		FRef<vertex_buffer>m_vertexBuffer;
-		m_vertexBuffer.reset(vertex_buffer::create(vertices, sizeof(vertices)));
+		FRef<vertex_buffer>m_vertexBuffer=vertex_buffer::create(vertices, sizeof(vertices));
 		buffer_layout layout = {
 			{"aPos" ,ShaderDataType::FRfloat3},
 			{"a_TexCoord",ShaderDataType::FRfloat2},
@@ -103,8 +100,7 @@ namespace Forge {
 		10, 12, 11, // Right side
 		13, 15, 14 // Facing side
 		};
-		FRef<index_buffer>m_indexBuffer;
-		m_indexBuffer.reset(index_buffer::create(indices, sizeof(indices) / sizeof(uint32_t)));
+		FRef<index_buffer>m_indexBuffer= index_buffer::create(indices, sizeof(indices) / sizeof(uint32_t));
 		rdc->PyroVA->SetIndexBuffer(m_indexBuffer);
 
 		rdc->CubeVA = vertex_array::create();
@@ -130,8 +126,7 @@ namespace Forge {
 
 
 		};
-		FRef<vertex_buffer>CubeVB;
-		CubeVB.reset(vertex_buffer::create(CubeVert, sizeof(CubeVert)));
+		FRef<vertex_buffer>CubeVB =vertex_buffer::create(CubeVert, sizeof(CubeVert));
 		buffer_layout CubeLayout = {
 			{"a_Pos" ,ShaderDataType::FRfloat3},
 		//	{"a_Color",ShaderDataType::FRfloat4}
@@ -172,8 +167,7 @@ namespace Forge {
 	4, 6, 7*/
 
 		};
-		FRef<index_buffer> CubeIB;
-		CubeIB.reset(index_buffer::create(CubeIndices, sizeof(CubeIndices) / sizeof(uint32_t)));
+		FRef<index_buffer> CubeIB =index_buffer::create(CubeIndices, sizeof(CubeIndices) / sizeof(uint32_t));
 		rdc->CubeVA->SetIndexBuffer(CubeIB);
 
 		rdc->CubeShader = shader::create("assets/shaders/CubeShader.fsf");

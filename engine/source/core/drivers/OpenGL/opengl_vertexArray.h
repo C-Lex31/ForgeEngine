@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/servers/rendering/renderer/vertexArray.h"
+#include "core/servers/rendering/core_rd/vertex_array.h"
 
 namespace Forge {
 

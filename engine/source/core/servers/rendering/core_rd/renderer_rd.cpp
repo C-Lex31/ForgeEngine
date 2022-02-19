@@ -1,9 +1,9 @@
 #include "frpch.h"
 #include "renderer_rd.h"
-#include "Renderer2D.h"
-#include "Renderer3D.h"
+#include "core/servers/rendering/renderer/Renderer2D.h"
+#include "core/servers/rendering/renderer/Renderer3D.h"
 namespace Forge {
-	renderer::SceneData* renderer::m_SceneData = new renderer::SceneData();
+	FScope<renderer::SceneData> renderer::m_SceneData = FCreateScope<renderer::SceneData>();
 
 	void renderer::Init()
 	{

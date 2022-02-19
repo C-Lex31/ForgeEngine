@@ -87,7 +87,7 @@ namespace Forge {
 				element.m_offset = offset;
 				offset += element.m_size;
 				m_stride += element.m_size;
-			}
+			}  
 		}
 	private:
 		std::vector<buffer_elements> m_elements;
@@ -103,7 +103,10 @@ namespace Forge {
 		virtual void unbind() const= 0;
 		virtual const buffer_layout& GetLayout()const = 0;
 		virtual void SetLayout(const buffer_layout& layout) = 0;
-		static vertex_buffer* create(float* vertices , uint32_t size);
+		virtual void SetData(const void* data, uint32_t size) = 0;
+
+		static FRef<vertex_buffer> create(float* vertices , uint32_t size);
+		static FRef<vertex_buffer> create( uint32_t size);
 	};
 
 
@@ -114,7 +117,7 @@ namespace Forge {
 		virtual void bind() const=0;
 		virtual void unbind() const = 0;
 		virtual uint32_t GetCount() const = 0;
-		static index_buffer* create(uint32_t* indices, uint32_t count);
+		static FRef<index_buffer> create(uint32_t* indices, uint32_t count);
 	};
 	
 }

@@ -7,9 +7,9 @@
 #include "platform/windows/windows.h"
 #include "core/layers/layerStack.h"
 #include "core/editor/editor_interface.h"
-#include "core/servers/rendering/renderer/buffers.h"
-#include "core/servers/rendering/renderer/vertexArray.h"
-#include "core/servers/rendering/renderer/shader.h"
+#include "core/servers/rendering/core_rd/buffers.h"
+#include "core/servers/rendering/core_rd/vertex_array.h"
+#include "core/servers/rendering/core_rd/shader.h"
 
 namespace Forge {
 	class Application

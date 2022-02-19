@@ -3,8 +3,8 @@
 #include "spdlog/sinks/stdout_color_sinks.h"
 namespace Forge {
 
-	std::shared_ptr<spdlog::logger> Log::s_coreLogger;
-	std::shared_ptr<spdlog::logger> Log::s_clientLogger;
+	FRef<spdlog::logger> Log::s_coreLogger;
+	FRef<spdlog::logger> Log::s_clientLogger;
 
 	void Log::Init()
 	{

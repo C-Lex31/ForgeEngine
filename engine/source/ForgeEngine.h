@@ -17,19 +17,23 @@
 // Renderer Includes
 #include "core/servers/rendering/renderer/Renderer2D.h"
 #include "core/servers/rendering/renderer/Renderer3D.h"
-#include "core/servers/rendering/renderer/renderer_rd.h"
-#include "core/servers/rendering/renderer/renderer_api.h"
-#include "core/servers/rendering/renderer/graphics_context.h"
-#include "core/servers/rendering/renderer/buffers.h"
-#include "core/servers/rendering/renderer/vertexArray.h"
-#include "core/servers/rendering/renderer/shader.h"
-#include "core/servers/rendering/renderer/texture.h"
-#include "core/servers/rendering/renderer/framebuffer.h"
+#include "core/servers/rendering/core_rd/renderer_rd.h"
+#include "core/servers/rendering/core_rd/renderer_api.h"
+#include "core/servers/rendering/core_rd/graphics_context.h"
+#include "core/servers/rendering/core_rd/buffers.h"
+#include "core/servers/rendering/core_rd/vertex_array.h"
+#include "core/servers/rendering/core_rd/shader.h"
+#include "core/servers/rendering/core_rd/texture.h"
+#include "core/servers/rendering/core_rd/framebuffer.h"
 
 #include "core/servers/camera/2D/orthographic_camera.h"
 #include "core/servers/camera/2D/controller.h"
 #include "core/servers/camera/3D/controller_main.h"
 #include "core/servers/camera/3D/Camera.h"
+
+//#include "core/scene/2D/scene_2d.h"
+//#include "core/scene/2D/components_2d.h"
+
 
 
 #include "imgui.h"

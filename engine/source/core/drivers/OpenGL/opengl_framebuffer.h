@@ -1,5 +1,5 @@
 #pragma once
-#include "core/servers/rendering/renderer/framebuffer.h"
+#include "core/servers/rendering/core_rd/framebuffer.h"
 #include "glad/glad.h"
 namespace Forge {
 

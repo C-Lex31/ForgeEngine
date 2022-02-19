@@ -121,7 +121,7 @@ namespace Forge {
 
         ImGui::Begin("Scene View");
         ImGuiBackendFlags backend_flags = io.BackendFlags;
-        ImGui::Checkbox("io.ConfigViewportsNoAutoMerge", &io.ConfigViewportsNoAutoMerge);
+      //  ImGui::Checkbox("io.ConfigViewportsNoAutoMerge", &io.ConfigViewportsNoAutoMerge);
         //  ImGui::CheckboxFlags("io.ConfigFlags: ViewportsEnable", &io.ConfigFlags, ImGuiConfigFlags_ViewportsEnable);
         //  ImGui::CheckboxFlags("io.BackendFlags: HasMouseHoveredViewport", &backend_flags, ImGuiBackendFlags_HasMouseHoveredViewport);
        //   ImGui::Checkbox("io.ConfigDockingTransparentPayload", &io.ConfigDockingTransparentPayload);
@@ -130,11 +130,11 @@ namespace Forge {
       //  io.ConfigDockingTransparentPayload =true;
         //backend_flags= ImGuiBackendFlags_PlatformHasViewports
 
-        bool isRightMouse = input::isMouseButtonPressed(FR_MOUSE_BUTTON_RIGHT);
+        bool isRightMouse = input::isMouseButtonPressed(Mouse::Button1);
         OnViewportDock = ImGui::IsWindowDocked();
         OnViewportHover = ImGui::IsWindowHovered();
 
-        if (input::isMouseButtonPressed(FR_MOUSE_BUTTON_RIGHT) && AvoidHoverCheckFlag == 0)
+        if (input::isMouseButtonPressed(Mouse::Button1) && AvoidHoverCheckFlag == 0)
         {
             if (OnViewportHover)
             {
@@ -142,7 +142,7 @@ namespace Forge {
                 AvoidHoverCheckFlag = 1;
             }
         }
-        else if (!input::isMouseButtonPressed(FR_MOUSE_BUTTON_RIGHT))
+        else if (!input::isMouseButtonPressed(Mouse::Button1))
         {
             OnViewportFocus = ImGui::IsWindowFocused();
             AvoidHoverCheckFlag = 0;

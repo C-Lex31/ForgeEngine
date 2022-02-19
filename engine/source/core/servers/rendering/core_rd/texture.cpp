@@ -1,6 +1,6 @@
 #include "frpch.h"
 #include "texture.h"
-#include "core/servers/rendering/renderer/renderer_rd.h"
+#include "core/servers/rendering/core_rd/renderer_rd.h"
 #include "core/drivers/OpenGL/opengl_texture.h"
 namespace Forge {
 

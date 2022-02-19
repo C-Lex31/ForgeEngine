@@ -41,11 +41,11 @@ namespace Forge {
 
 
         Renderer2D::BeginScene(m_CameraController.GetCamera());
-        Renderer2D::DrawQuad({ 0.0f,0.0f }, { 1.7f,0.5f }, QuadColor1);
-        Renderer2D::DrawQuad({ 1.0f,0.0f }, { 0.8f,0.5f }, QuadColor2);
-        //Renderer2D::DrawQuad({ 0.0f,0.0f }, { 1.0f,1.0f }, m_Logo);
+        Renderer2D::DrawQuad({ 1.0f,0.0f }, { 1.7f,0.5f }, QuadColor1);
+        Renderer2D::DrawQuad({ -1.0f,0.0f }, { 0.8f,0.5f }, QuadColor2);
+        //Renderer2D::DrawQuad({ 0.0f,0.0f }, { 5.0f,5.0f }, m_CheckerboardTexture);
 
-        Renderer2D::DrawQuad({ 0.0f,0.0f }, { 5.0f,5.0f }, m_CheckerboardTexture, m_Logo);
+       // Renderer2D::DrawQuad({ 0.0f,0.0f }, { 5.0f,5.0f }, m_CheckerboardTexture, m_Logo);
 
         Renderer2D::EndScene();
         m_Framebuffer->unbind();

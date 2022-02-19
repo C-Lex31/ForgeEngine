@@ -182,6 +182,12 @@ namespace Forge {
 		glUniform1i(Location, value);
 	}
 
+	void OpenGLShader::UploadUniformIntArray(const FString& name, int* values, uint32_t count)
+	{
+		GLint Location = glGetUniformLocation(m_rendererID, name.c_str());
+		glUniform1iv(Location, count, values);
+	}
+
 	
 
 }

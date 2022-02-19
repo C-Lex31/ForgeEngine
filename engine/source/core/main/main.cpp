@@ -2,7 +2,7 @@
 #include "main.h"
 #include "core/events/ApplicationEvent.h"
 #include "core/input/input.h"
-#include "core/servers/rendering/renderer/renderer_rd.h"
+#include "core/servers/rendering/core_rd/renderer_rd.h"
 
 namespace Forge {
 #define FR_BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
@@ -76,11 +76,11 @@ namespace Forge {
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			if (!m_Minimized)
-			{
+
+			
 				for (Layer* layer : m_LayerStack)
 					layer->OnUpdate(timestep);
-			}
+			
 
 				m_guiLayer->Begin();
 
